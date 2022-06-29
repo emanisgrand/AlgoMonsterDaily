@@ -1,17 +1,17 @@
 ﻿namespace AlgoMonsterDaily
 {
-    public class Node<T> 
+    public class TreeNode<T> 
     {
         public T val;
-        public Node<T> left;
-        public Node<T> right;
+        public TreeNode<T> left;
+        public TreeNode<T> right;
 
-        public Node(T val)
+        public TreeNode(T val)
         {
             this.val = val;
         }
 
-        public Node(T val, Node<T> left, Node<T> right) : this(val)
+        public TreeNode(T val, TreeNode<T> left, TreeNode<T> right) : this(val)
         {
             this.left = left;
             this.right = right;

@@ -3,19 +3,18 @@
     public class TwoPointers
     {
         // global node
-        public class Node<T>
+        public class LinkedNode<T>
         {
             public T val;
-            public Node<T> next;
+            public LinkedNode<T> next;
 
-            public Node(T val)
+            public LinkedNode(T val)
             {
                 this.val = val;
             }
 
-            public Node(T val, Node<T> next)
+            public LinkedNode(T val, LinkedNode<T> next) : this(val)
             {
-                this.val = val;
                 this.next = next;
             }
         }
@@ -23,17 +22,17 @@
         public class SameDirection
         {
             // setting up a linked list
-            public static Node<T> BuildList<T>(List<string> strs, Func<string, T> f)
+            public static LinkedNode<T> BuildList<T>(List<string> strs, Func<string, T> f)
             {
-                Node<T> node = null;
+                LinkedNode<T> node = null;
                 for (int i = strs.Count - 1; i >= 0; i--)
                 {
-                    node = new Node<T>(f(strs[i]), node);
+                    node = new LinkedNode<T>(f(strs[i]), node);
                 }
                 return node;
             }
 
-            public static int MiddleOfLinkedList(Node<int> head)
+            public static int MiddleOfLinkedList(LinkedNode<int> head)
             {
                 // WRITE YOUR BRILLIANT CODE HERE
                 int slowptr = 0;
