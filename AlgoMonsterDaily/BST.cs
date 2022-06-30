@@ -26,10 +26,10 @@
             return bst;
         } 
         
-        public static TreeNode<int> InvertBST(TreeNode<int> bst)
+        public static TreeNode<int> InvertBST(TreeNode<int> tree)
         {
-            TreeNode<int> invertedTree = new TreeNode<int>(2);
-            return invertedTree;
+            if (tree == null) return null;
+            return new TreeNode<int>(tree.val, InvertBST(tree.right), InvertBST(tree.left));
         }
     }
 }
