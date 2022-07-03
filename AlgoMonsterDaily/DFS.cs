@@ -67,6 +67,7 @@
             SerializeDFS(root.right, result);
         }
 
+        // Lowest Common Ancestor
         public static TreeNode<int> Lca(TreeNode<int> root, TreeNode<int> node1, TreeNode<int> node2)
         {
             if (root == null) return null;
@@ -88,10 +89,28 @@
             return null;
         }
 
-        public static void FindNode()
+        public static bool IsBalanced(TreeNode<int> tree)
         {
+            return TreeHeight(tree) != -1;
+        }
+        public static int TreeHeight(TreeNode<int> tree)
+        {
+            if (tree == null) return 0;
+            
+            int leftHeight = TreeHeight(tree.left);
+            int rightHeight = TreeHeight(tree.right);
+
+            if (leftHeight == -1 || rightHeight == -1) 
+                return -1;
+            // calculate difference of heigt of subtree
+            if (Math.Abs(leftHeight - rightHeight) > 1) 
+                return -1;
+            
+            // similar to TreeMaxDepth
+            return Math.Max(leftHeight, rightHeight) + 1;
 
         }
+
         public static void PrintTree<T>(TreeNode<T> root, List<string> tree)
         {
             if (root == null) { 
@@ -112,15 +131,15 @@
         private static int dfs(TreeNode<int> root, int maxSoFar)
         {
             if (root == null) return 0;
-            int total = 0;
+            int visible = 0;
 
             if (root.val > maxSoFar)
-                total++;
+                visible++;
 
-            total += dfs(root.left, Math.Max(maxSoFar, root.val));
-            total += dfs(root.right, Math.Max(maxSoFar, root.val));
+            visible += dfs(root.left, Math.Max(maxSoFar, root.val));
+            visible += dfs(root.right, Math.Max(maxSoFar, root.val));
 
-            return total;
+            return visible;
         }
         public static int VisibleTreeNode(TreeNode<int> root)
         {

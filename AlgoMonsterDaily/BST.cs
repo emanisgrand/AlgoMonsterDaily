@@ -11,6 +11,7 @@
         {
             // empty nodes always return true
             if (root == null) return true;
+
             if (!(min <= root.val && root.val <= max)) return false;
 
             return DFS(root.left, min, root.val) && DFS(root.right, root.val, max); 
