@@ -17,7 +17,7 @@ namespace AlgoMonsterDaily
             List<int> strs = new List<int>{1, 2, 3, 3, 3, 6, 6, 6, 10, 12, 189};
             int target = 6;
             //TreeNode<int> root = DFS.BuildTree(strs, ref pos, int.Parse);
-            var res = BinarySearch.FirstOccurrence(strs, target);
+            var res = BinarySearch.SquareRoot(10);
             Console.WriteLine(res);
          }
     }
