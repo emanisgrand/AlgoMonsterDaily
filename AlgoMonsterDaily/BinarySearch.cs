@@ -42,6 +42,7 @@
             return boundaryIndex;
         }
 
+        #region Sorted Arrays
         public static int FirstNotSmaller(List<int> arr, int target)
         {
             int left = 0;
@@ -88,7 +89,7 @@
         public static int SquareRoot(int n)
         {
             if (n == 0) return 0;
-            int left = 0;
+            int left = 1;
             int right = n;
             int res = -1;
             while(left <= right)
@@ -105,5 +106,14 @@
             }
             return res;
         }
+
+        #endregion
+
+        #region Implicitly Sorted Array
+        // find minimum in rotated sorted array.
+
+
+        // the peak of a mountain array
+        #endregion
     }
 }
