@@ -1,7 +1,13 @@
 ﻿namespace AlgoMonsterDaily
 {
     public class DFS
-    {   
+    {
+        public IList<int> InorderTraversal(TreeNode<int> root)
+        {
+            IList<int> list = new List<int>();
+            return list;
+        }
+
         public static TreeNode<T> BuildTree<T>(List<string> strs, ref int pos, Func<string, T> f)
         {
             string val = strs[pos];
