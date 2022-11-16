@@ -1,4 +1,4 @@
-﻿namespace AlgoMonsterDaily
+﻿namespace Algorithms.TwoPointers
 {
     public class TwoPointers
     {

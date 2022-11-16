@@ -1,20 +1,20 @@
-﻿namespace AlgoMonsterDaily
-{
-    public class BST
-    {
-        public static bool ValidBST(TreeNode<int> root)
-        {
-            return DFS(root, Int32.MinValue, Int32.MaxValue);
-        }
-       
-        public static bool DFS(TreeNode<int> root, int min, int max)
-        {
-            // empty nodes always return true
-            if (root == null) return true;
+﻿using DataStructures;
 
+namespace Algorithms.BST
+{
+    public class BinarySearchTree
+    {
+        private static bool DFS(TreeNode<int> root, int min, int max)
+        {
+            if (root == null) return true;
             if (!(min <= root.val && root.val <= max)) return false;
 
-            return DFS(root.left, min, root.val) && DFS(root.right, root.val, max); 
+            return DFS(root, min, root.val) && DFS(root, root.val, max);
+        }
+
+        public static bool IsValidBST(TreeNode<int> root)
+        {
+            return DFS(root, Int32.MinValue, Int32.MaxValue);
         }
 
         public static TreeNode<int> InsertBST(TreeNode<int> bst, int val)

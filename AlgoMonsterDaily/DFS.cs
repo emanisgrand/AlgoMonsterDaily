@@ -1,23 +1,14 @@
-﻿namespace AlgoMonsterDaily
+﻿namespace Algorithms.DFS
 {
+    // Search algorithm
     public class DFS
     {
+        /*
         public IList<int> InorderTraversal(TreeNode<int> root)
         {
             IList<int> list = new List<int>();
             return list;
         }
-
-        public static TreeNode<T> BuildTree<T>(List<string> strs, ref int pos, Func<string, T> f)
-        {
-            string val = strs[pos];
-            pos++;
-            if (val == "x") return null;
-            TreeNode<T> left = BuildTree<T>(strs, ref pos, f);
-            TreeNode<T> right = BuildTree<T>(strs, ref pos, f);
-            return new TreeNode<T>(f(val), left, right);
-        }
-
         public static int TreeMaxDepth(TreeNode<int> root)
         {
             if (root == null) return 0;
@@ -74,9 +65,9 @@
         {
             string val = nodes[pos];
             pos++;
-            
+
             if (val == "x") return null;
-            
+
 
             TreeNode<int> cur = new TreeNode<int>(int.Parse(val));
             cur.left = DeserializeDFS(nodes, ref pos);
@@ -130,18 +121,22 @@
 
             TreeNode<int> leftSearch = FindNode(root.left, target);
             if (leftSearch != null) return leftSearch;
-            
+
             return FindNode(root.right, target);
         }
         public static void PrintTree<T>(TreeNode<T> root, List<string> tree)
         {
-            if (root == null) { 
-                tree.Add("x"); 
-            } else {
+            if (root == null)
+            {
+                tree.Add("x");
+            }
+            else
+            {
                 tree.Add(root.val.ToString());
                 PrintTree(root.left, tree);
                 PrintTree(root.right, tree);
             }
         }
+        */
     }
 }
