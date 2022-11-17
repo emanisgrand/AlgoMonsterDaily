@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace DataStructures
 {
-    public class LinkedLRUCache : Dictionary<int, LinkedListNode<int>>
+    public class LinkedLRUCache : Dictionary<int, LinkedListNode<int[]>>
     {
         uint _capacity;
-        LinkedList<int> _list = new LinkedList<int>();
+        LinkedList<int[]> _list = new LinkedList<int[]>();
         public LinkedLRUCache(uint capacity):base((int)capacity)
         {
             _capacity = capacity;
@@ -17,32 +17,33 @@ namespace DataStructures
 
         public int Get(int key)
         {
-            return this.TryGetValue(key, out var node) ? node.Value : -1;
+            return this.TryGetValue(key, out var node) ? node.Value[1] : -1;
         }
 
         public void Put(int key, int value)
         {
             if(this.ContainsKey(key))
             {
-                this[key].Value = value;
+                this[key].Value[1] = value;
             }
             else
             {
                 if(this.Count == this._capacity)
                 {
-                    this.Remove(_list.Last.Value); 
+                    //Evict by using key
+                    this.Remove(_list.Last.Value[0]); 
                     _list.RemoveLast(); 
                 }
 
-                this.Add(key, new LinkedListNode<int>(value));
+                this.Add(key, new LinkedListNode< int[]> (new int []{key, value} ) );
             }
 
             Reorder(this[key]);
         }
 
-        public void Reorder(LinkedListNode<int> node)
+        public void Reorder(LinkedListNode<int[]> node)
         {
-            if (node.Previous != null) 
+            if (node.Previous != null)
                 _list.Remove(node);
 
             if(_list.First != node)
