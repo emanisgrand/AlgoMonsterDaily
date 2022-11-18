@@ -6,16 +6,80 @@ using System.Threading.Tasks;
 
 namespace DataStructures
 {
-    public class LRUCache
+    public class LinkedLRUCache : Dictionary<int, LinkedListNode<int[]>>
     {
-        int capacity;
-        Dictionary<int, int> cache;
-
-        public LRUCache(int capacity)
+        uint _capacity;
+        LinkedList<int[]> _list = new LinkedList<int[]>();
+        public LinkedLRUCache(uint capacity):base((int)capacity)
         {
-            if (capacity < 0) { throw new ArgumentOutOfRangeException(); }
-            this.capacity = capacity;
-            this.cache = new Dictionary<int, int>();
+            _capacity = capacity;
+        }
+
+        public int Get(int key)
+        {
+            return this.TryGetValue(key, out var node) ? node.Value[1] : -1;
+        }
+
+        public void Put(int key, int value)
+        {
+            if(this.ContainsKey(key))
+            {
+                this[key].Value[1] = value;
+            }
+            else
+            {
+                if(this.Count == this._capacity)
+                {
+                    //Evict by using key
+                    this.Remove(_list.Last.Value[0]); 
+                    _list.RemoveLast(); 
+                }
+
+                this.Add(key, new LinkedListNode< int[]> (new int []{key, value} ) );
+            }
+
+            Reorder(this[key]);
+        }
+
+        public void Reorder(LinkedListNode<int[]> node)
+        {
+            if (node.Previous != null)
+                _list.Remove(node);
+
+            if(_list.First != node)
+                _list.AddFirst(node);
+        }
+    }
+
+    public class LRUCache : Dictionary<int, int>
+    {
+        uint _capacity;
+        public LRUCache(uint capacity) : base((int)capacity)
+        {
+            _capacity = capacity;
+        }
+
+        public int Get(int key)
+        {
+            if (base.TryGetValue(key, out int value))
+            {
+                return value;
+            }
+            else
+            {
+                return -1;
+            }
+        }
+
+        public void Put(int key, int value)
+        {
+            if (this.ContainsKey(key))
+            {
+                this[key] = value;
+            }else
+            {
+                this.Add(key, value);
+            }
         }
 
         public int Get(int key)
@@ -34,7 +98,8 @@ namespace DataStructures
         public T val;
         public TreeNode<T> left;
         public TreeNode<T> right;
-        public TreeNode(T value)
+
+        public TreeNode(T value) 
         {
             this.val = value;
         }
