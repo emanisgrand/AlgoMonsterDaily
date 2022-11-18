@@ -19,6 +19,8 @@
             }
         }
 
+
+
         public class SameDirection
         {
             // setting up a linked list
@@ -34,7 +36,6 @@
 
             public static int MiddleOfLinkedList(LinkedNode<int> head)
             {
-                // WRITE YOUR BRILLIANT CODE HERE
                 int slowptr = 0;
                 int fastptr = 0;
                 while (head.next != null)
@@ -53,6 +54,27 @@
 
         }
 
+        public class Nervous
+        {
+            public int[] twosum(int[] nums, int target)
+            {
+                // 4 7 2 9 6 18   target 15
+
+                Dictionary<int, int> map = new Dictionary<int, int>();
+                for (int i=0; i<nums.Length; i++)
+                {
+                    int cur = nums[i];
+                    int x = target - cur;
+                    if (map.ContainsKey(x))
+                    {
+                        return new int[] { map[x], i };
+                    }
+                    map.Add(cur, i);
+                }
+
+                return null;                
+            }
+        }
 
         public class OppositeDirection
         {

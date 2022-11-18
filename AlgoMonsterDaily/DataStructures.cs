@@ -13,8 +13,19 @@ namespace DataStructures
 
         public LRUCache(int capacity)
         {
+            if (capacity < 0) { throw new ArgumentOutOfRangeException(); }
             this.capacity = capacity;
             this.cache = new Dictionary<int, int>();
+        }
+
+        public int Get(int key)
+        {
+            return -1;
+        }
+
+        public void Put(int key, int value)
+        {
+            
         }
     }
 

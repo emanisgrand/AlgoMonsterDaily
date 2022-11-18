@@ -9,10 +9,36 @@ namespace AlgoTests
     public class LeetCodeTests
     {
         [TestMethod]
+        [ExpectedException(typeof(ArgumentOutOfRangeException))]
+        public void LRUCacheConstructorRejectsNegativeValues()
+        {
+            var obj = new LRUCache(-59);
+            
+            /*
+            this approach also works. 
+            try
+            {
+                var cache = new LRUCache(-1);
+                Assert.Fail("An exception should be thrown");
+            }
+            catch (ArgumentOutOfRangeException ar)
+            {
+                Assert.AreEqual("Specified argument was out of the range of valid values.", ar.Message);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message.ToString());
+                Assert.Fail(string.Format("Unexpected exception of type {0} caught: {1}", e.GetType(), e.Message));
+            }
+            */
+        }
+
+
+        [TestMethod]
         [DataRow("3 5 1 6 2 0 8 x x 7 4")]
         public void LowestCommonAncestorOfABinaryTree()
         {
-            // ? 
+            
         }
 
 
