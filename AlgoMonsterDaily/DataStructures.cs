@@ -17,7 +17,13 @@ namespace DataStructures
 
         public int Get(int key)
         {
-            return this.TryGetValue(key, out var node) ? node.Value[1] : -1;
+            if (!this.ContainsKey(key))
+            {
+                return -1;
+            }
+            Reorder(this[key]);
+
+            return this[key].Value[1];
         }
 
         public void Put(int key, int value)
