@@ -1,12 +1,7 @@
-using AlgoMonsterDaily;
-using Algorithms.TwoPointers;
-using DataStructures;
-using System.Data;
-
 namespace AlgoTests
 {
     [TestClass]
-    public class AlgorithmsTest_TwoPointers
+    public class TwoPointers_Test
     {
         [TestMethod]
         public void MoveZeroesInPlace()
@@ -25,12 +20,6 @@ namespace AlgoTests
                 }
             }
             CollectionAssert.AreEqual(input, expected);
-        }
-
-        // helpers
-        public static List<string> SplitWords(string s)
-        {
-            return string.IsNullOrEmpty(s) ? new List<string>() : s.Trim().Split(' ').ToList();
         }
     }
 

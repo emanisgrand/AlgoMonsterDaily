@@ -21,7 +21,6 @@ namespace AlgoTests
             return strList;
         }
         #endregion
-
         #region Linked List 
         public static Node<T> BuildList<T>(List<string> strs, Func<string, T> f)
         {
@@ -33,8 +32,6 @@ namespace AlgoTests
             return node;
         }
         #endregion
-
-
         #region Graph 
         public static TreeNode<T> BuildTree<T>(List<string> strs, ref int pos, Func<string, T> f)
         {

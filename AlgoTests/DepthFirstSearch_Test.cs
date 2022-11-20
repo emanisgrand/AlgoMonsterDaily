@@ -5,7 +5,7 @@ using System.Data;
 namespace AlgoTests
 {
     [TestClass]
-    public class AlgorithmsTest_DFS
+    public class DepthFirstSearch_Test
     {
         [TestMethod]
         [DataRow("cat")]
@@ -29,13 +29,8 @@ namespace AlgoTests
             var strs = Helpers.SplitWords(inputString);
             int pos = 0;
             TreeNode<int> root = Helpers.BuildTree(strs, ref pos, int.Parse);
-            int res = DFSearch.TreeMaxDepth(root);
+            int res = BinarySearchTree.TreeMaxDepth(root);
             Assert.AreEqual(res, expected);            
-        }
-
-        public static int TreeMaxDepth(TreeNode<int> root)
-        {
-            return (root != null) ? dfs(root) - 1 : 0;
         }
     }
 }

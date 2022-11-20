@@ -4,24 +4,6 @@ namespace Algorithms.Search
 {
     public static class DFSearch
     {
-        private static int dfs(TreeNode<int> root)
-        {
-            if (root == null) return 0;
-            return Math.Max(dfs(root.left), dfs(root.right)) + 1;
-        }
-
-        public static int TreeMaxDepth(TreeNode<int> root)
-        {
-            return (root != null) ? dfs(root) - 1 : 0;
-        }
-
-        public static List<string> Permutations(string letters)
-        {
-            List<string> res = new List<string>();
-            dfs(0, res, new bool[letters.Length], new List<char>(), letters);
-            return res;
-        }
-
         public static void dfs(int startIndex, List<string> res, bool[] used, List<char> path, string letters)
         {
             if (startIndex == used.Length)
@@ -43,10 +25,28 @@ namespace Algorithms.Search
                 used[i] = false;
             }
         }
+
+        public static List<string> Permutations(string letters)
+        {
+            List<string> res = new List<string>();
+            dfs(0, res, new bool[letters.Length], new List<char>(), letters);
+            return res;
+        }
+        
     }
 
     public static class BinarySearchTree
     {
+        private static int dfs(TreeNode<int> root)
+        {
+            if (root == null) return 0;
+            return Math.Max(dfs(root.left), dfs(root.right)) + 1;
+        }
+        public static int TreeMaxDepth(TreeNode<int> root)
+        {
+            return (root != null) ? dfs(root) - 1 : 0;
+        }
+
         private static bool DFS(TreeNode<int> root, int min, int max)
         {
             if (root == null) return true;
