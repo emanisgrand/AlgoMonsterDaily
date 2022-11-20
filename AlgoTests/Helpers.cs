@@ -2,7 +2,7 @@
 
 namespace AlgoTests
 {
-    internal class Helpers
+    public static class Helpers
     {
         #region String
         public static List<string> SplitWords(string s)
