@@ -1,11 +1,67 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace DataStructures
+﻿namespace DataStructures
 {
+
+    public struct Coordinate
+    {
+        public int r;
+        public int c;
+
+        public Coordinate(int r, int c)
+        {
+            this.r = r;
+            this.c = c;
+        }
+    }
+
+    public class Node<T>
+    {
+        public T val;
+        public Node<T> next;
+
+        public Node(T val)
+        {
+            this.val = val;
+        }
+
+        public Node(T val, Node<T> next) : this(val)
+        {
+            this.next = next;
+        }
+    }
+    public class LinkedNode<T>
+    {
+        public T val;
+        public LinkedNode<T> next;
+
+        public LinkedNode(T val)
+        {
+            this.val = val;
+        }
+
+        public LinkedNode(T val, LinkedNode<T> next) : this(val)
+        {
+            this.next = next;
+        }
+    }
+
+    public class TreeNode<T>
+    {
+        public T val;
+        public TreeNode<T> left;
+        public TreeNode<T> right;
+
+        public TreeNode(T value)
+        {
+            this.val = value;
+        }
+
+        public TreeNode(T value, TreeNode<T> left, TreeNode<T> right) : this(value)
+        {
+            this.left = left;
+            this.right = right;
+        }
+    }   
+
     public class LRUCache : Dictionary<int, LinkedListNode<int[]>>
     {
         int _capacity;
@@ -56,23 +112,4 @@ namespace DataStructures
                 _list.AddFirst(node);
         }
     }
-
-    public class TreeNode<T>
-    {
-        public T val;
-        public TreeNode<T> left;
-        public TreeNode<T> right;
-
-        public TreeNode(T value) 
-        {
-            this.val = value;
-        }
-
-        public TreeNode(T value, TreeNode<T> left, TreeNode<T> right) : this(value)
-        {
-            this.left = left;
-            this.right = right;
-        }
-    }
-    
 }

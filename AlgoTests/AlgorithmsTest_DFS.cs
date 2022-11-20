@@ -1,41 +1,21 @@
-using Algorithms.DFS;
+using Algorithms.Search;
 using DataStructures;
 using System.Data;
 
 namespace AlgoTests
 {
     [TestClass]
-
-
     public class AlgorithmsTest_DFS
     {
         [TestMethod]
         [DataRow("cat")]
         public void PermutationsTest(string letters)
         {
-            List<string> res = new List<string>();
-            dfs(0, res, new bool[letters.Length], new List<char>(), letters);
-        }
-
-        public static void dfs(int startIndex, List<string> res, bool[] used, List<char> path, string letters)
-        {
-            if (startIndex == used.Length)
+            List<string> res = DFSearch.Permutations(letters);
+            res.Sort();
+            foreach(string line in res)
             {
-                res.Add(String.Join("", path));
-                return;
-            }
-
-            for (int i=0; i<used.Length; i++)
-            {
-                // stack iterate condition
-                if (used[i]) continue;
-                
-                path.Add(letters[i]);
-                used[i] = true;
-                dfs(startIndex + 1, res, used, path, letters);
-
-                path.RemoveAt(path.Count - 1);
-                used[i] = false;
+                Console.WriteLine(line);
             }
         }
 
@@ -49,8 +29,13 @@ namespace AlgoTests
             var strs = Helpers.SplitWords(inputString);
             int pos = 0;
             TreeNode<int> root = Helpers.BuildTree(strs, ref pos, int.Parse);
-            int res = DepthFirstSearch.TreeMaxDepth(root);
+            int res = DFSearch.TreeMaxDepth(root);
             Assert.AreEqual(res, expected);            
+        }
+
+        public static int TreeMaxDepth(TreeNode<int> root)
+        {
+            return (root != null) ? dfs(root) - 1 : 0;
         }
     }
 }

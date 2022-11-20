@@ -1,5 +1,5 @@
 using DataStructures;
-using Algorithms.BST;
+using Algorithms.Search;
 using System.Data;
 
 namespace AlgoTests
@@ -16,7 +16,7 @@ namespace AlgoTests
             var strs = Helpers.SplitWords(inputString);
             int pos = 0;
             var root = Helpers.BuildTree(strs, ref pos, int.Parse);
-
+            
             Assert.AreEqual(BinarySearchTree.IsValidBST(root), expected);
         }
     }    

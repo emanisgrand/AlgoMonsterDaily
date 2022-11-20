@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using DataStructures;
 
 namespace AlgoMonsterDaily
 {
@@ -13,13 +9,13 @@ namespace AlgoMonsterDaily
             int numRows = 5;
             int numCols = 5;
 
-            aryBfs(image, new Utils.Coordinate(r, c), replacement, numRows, numCols);
+            aryBfs(image, new Coordinate(r, c), replacement, numRows, numCols);
             return image;
         }
 
-        private static void aryBfs(int[,] image, Utils.Coordinate root, int replacementColor, int numRows, int numCols)
+        private static void aryBfs(int[,] image, Coordinate root, int replacementColor, int numRows, int numCols)
         {
-            Queue<Utils.Coordinate> queue = new Queue<Utils.Coordinate>();
+            Queue<Coordinate> queue = new Queue<Coordinate>();
             queue.Enqueue(root);
 
             bool[,] visited = new bool[numRows, numCols];
@@ -33,11 +29,11 @@ namespace AlgoMonsterDaily
 
             while (queue.Count > 0)
             {
-                Utils.Coordinate node = queue.Dequeue();
+                Coordinate node = queue.Dequeue();
 
-                List<Utils.Coordinate> neighbors = AryGetNeighbors(image, node, rootColor, numRows, numCols);
+                List<Coordinate> neighbors = AryGetNeighbors(image, node, rootColor, numRows, numCols);
 
-                foreach (Utils.Coordinate neighbor in neighbors)
+                foreach (Coordinate neighbor in neighbors)
                 {
 
                     if (visited[neighbor.r, neighbor.c]) continue;
@@ -51,9 +47,9 @@ namespace AlgoMonsterDaily
                 }
             }
         }
-        private static List<Utils.Coordinate> AryGetNeighbors(int[,] image, Utils.Coordinate node, int rootColor, int numRows, int numCols)
+        private static List<Coordinate> AryGetNeighbors(int[,] image, Coordinate node, int rootColor, int numRows, int numCols)
         {
-            List<Utils.Coordinate> neighbors = new List<Utils.Coordinate>();
+            List<Coordinate> neighbors = new List<Coordinate>();
 
             int[] deltaRow = { -1, 0, 1, 0 };
             int[] deltaCol = { 0, 1, 0, -1 };
@@ -68,7 +64,7 @@ namespace AlgoMonsterDaily
                 {
                     if (image[neighborRow,neighborCol] == rootColor)
                     {
-                        neighbors.Add(new Utils.Coordinate(neighborRow, neighborCol));
+                        neighbors.Add(new Coordinate(neighborRow, neighborCol));
                     }
                 }
             }
@@ -79,14 +75,14 @@ namespace AlgoMonsterDaily
             int numRows = image.Count;
             int numCols = image[0].Count;
 
-            bfs(image, new Utils.Coordinate(r, c), replacement, numRows, numCols);
+            bfs(image, new Coordinate(r, c), replacement, numRows, numCols);
 
             return image;
         }
-        private static void bfs(List<List<int>> image, Utils.Coordinate root, int replacementColor, int numRows, int numCols)
+        private static void bfs(List<List<int>> image, Coordinate root, int replacementColor, int numRows, int numCols)
         {
 
-            Queue<Utils.Coordinate> queue = new Queue<Utils.Coordinate>();
+            Queue<Coordinate> queue = new Queue<Coordinate>();
             queue.Enqueue(root);
 
 
@@ -104,11 +100,11 @@ namespace AlgoMonsterDaily
 
             while (queue.Count > 0)
             {
-                Utils.Coordinate node = queue.Dequeue();
+                Coordinate node = queue.Dequeue();
 
-                List<Utils.Coordinate> neighbors = getNeighbors(image, node, rootColor, numRows, numCols);
+                List<Coordinate> neighbors = getNeighbors(image, node, rootColor, numRows, numCols);
 
-                foreach (Utils.Coordinate neighbor in neighbors)
+                foreach (Coordinate neighbor in neighbors)
                 {
 
                     if (visited[neighbor.r, neighbor.c]) continue;
@@ -122,9 +118,9 @@ namespace AlgoMonsterDaily
                 }
             }
         }
-        private static List<Utils.Coordinate> getNeighbors(List<List<int>> image, Utils.Coordinate node, int rootColor, int numRows, int numCols)
+        private static List<Coordinate> getNeighbors(List<List<int>> image, Coordinate node, int rootColor, int numRows, int numCols)
         {
-            List<Utils.Coordinate> neighbors = new List<Utils.Coordinate>();
+            List<Coordinate> neighbors = new List<Coordinate>();
 
             int[] deltaRow = { -1, 0, 1, 0 };
             int[] deltaCol = { 0, 1, 0, -1 };
@@ -139,7 +135,7 @@ namespace AlgoMonsterDaily
                 {
                     if (image[neighborRow][neighborCol] == rootColor)
                     {
-                        neighbors.Add(new Utils.Coordinate(neighborRow, neighborCol));
+                        neighbors.Add(new Coordinate(neighborRow, neighborCol));
                     }
                 }
             }
