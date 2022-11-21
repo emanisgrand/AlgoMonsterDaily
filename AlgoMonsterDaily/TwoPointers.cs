@@ -4,7 +4,7 @@ namespace Algorithms.TwoPointers
 {
     public class SameDirection
     {
-        public static int MiddleOfLinkedList(LinkedNode<int> head)
+        public static int MiddleOfLinkedList(Node<int> head)
         {
             int slowptr = 0;
             int fastptr = 0;

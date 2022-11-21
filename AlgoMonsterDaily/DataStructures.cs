@@ -28,21 +28,6 @@
             this.next = next;
         }
     }
-    public class LinkedNode<T>
-    {
-        public T val;
-        public LinkedNode<T> next;
-
-        public LinkedNode(T val)
-        {
-            this.val = val;
-        }
-
-        public LinkedNode(T val, LinkedNode<T> next) : this(val)
-        {
-            this.next = next;
-        }
-    }
 
     public class TreeNode<T>
     {
