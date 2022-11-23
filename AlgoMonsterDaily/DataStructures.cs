@@ -1,6 +1,20 @@
-﻿namespace DataStructures
-{
+﻿using System.Collections;
 
+namespace DataStructures
+{
+    public class ArrList
+    {
+        ArrayList _arrayList = new ArrayList();
+        
+        public void ArrayListsAreCool()
+        {
+            _arrayList.Clear();
+            _arrayList.Sort();
+            _arrayList.Add("asdsa");
+            _arrayList.Add(123132);
+            _arrayList.Add(123132f);
+        }
+    }
     public struct Coordinate
     {
         public int r;
