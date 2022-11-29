@@ -1,6 +1,7 @@
 using Algorithms.Search;
 using System.Data;
 using System.Collections.Generic;
+using AlgoMonsterDaily;
 
 namespace AlgoTests
 {
@@ -42,6 +43,15 @@ namespace AlgoTests
         {
             List<int> arr = Helpers.SplitWords(data).Select(int.Parse).ToList();
             Assert.AreEqual(expected, BinarySearch.FirstOcurrence(arr, target));
+        }
+
+        [TestMethod]
+        [DataRow(1024, 32)]
+        [DataRow(2048, 45)]
+        [DataRow(8, 2)]
+        public void FindSquareRoot(int data, int expected)
+        {
+            Assert.AreEqual(expected, BinarySearch.SquareRoot(data));
         }
     }    
 }

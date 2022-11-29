@@ -98,6 +98,32 @@ namespace Algorithms.Search
             }
             return mostWanted;
         }
+
+        public static int SquareRoot(int n)
+        {
+            if (n == 0 ) return 0;
+
+            int left = 1;
+            int right = n;
+            int sqrt = 0;
+
+            while (left <= right)
+            {
+                int mid = left + (right - left) / 2;
+                if (mid == n / mid) return mid;
+                else if (mid < n/mid)
+                {
+                    sqrt = mid;
+                    left = mid + 1;
+                }
+                else
+                {
+                    right = mid - 1;
+                }
+            }
+
+            return sqrt;
+        }
     }
 
     public static class DFSearch
