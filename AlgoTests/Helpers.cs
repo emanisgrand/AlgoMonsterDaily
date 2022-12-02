@@ -1,4 +1,5 @@
 ﻿using DataStructures;
+using System.Collections;
 
 namespace AlgoTests
 {
@@ -32,6 +33,7 @@ namespace AlgoTests
             return node;
         }
         #endregion
+
         #region Graph 
         public static TreeNode<T> BuildTree<T>(List<string> strs, ref int pos, Func<string, T> f)
         {

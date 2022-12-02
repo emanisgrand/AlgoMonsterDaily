@@ -1,7 +1,5 @@
 using Algorithms.Search;
 using System.Data;
-using System.Collections.Generic;
-using AlgoMonsterDaily;
 
 namespace AlgoTests
 {

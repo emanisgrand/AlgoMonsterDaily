@@ -1,6 +1,4 @@
-using Algorithms.Search;
 using System.Data;
-using System.Collections.Generic;
 
 namespace AlgoTests
 {
