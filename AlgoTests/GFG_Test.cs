@@ -1,19 +1,22 @@
+using Algorithms.Search;
+
 namespace AlgoTests
 {
     [TestClass]
-    public class GFGTests
+    public class GFG_Test
     {
         /// <summary>
         /// Given an array of distinct elements. The task is to find triplets in the array whose sum is zero.
         /// </summary>
         [TestMethod]
-        [DataRow("0 -1 2 -3 1", new int[3] {0, -1, 1})]
-        [DataRow("0 -1 2 -3 1", new int[3] {2, -3, 1})]
-        public void FindTriplestWithZeroSum(string data, int[] expected)
+        [DataRow("0 -1 2 -3 1")]
+        public void FindTripletsWithZeroSum(string data)
         {
             var arr = Helpers.SplitWords(data).Select(int.Parse).ToArray();
-            
 
+            var triplets = GFG.FindTriplets(arr, arr.Length);
+
+            if (triplets.Count == 0) { Console.WriteLine("none exists"); }
         }
     }    
 }

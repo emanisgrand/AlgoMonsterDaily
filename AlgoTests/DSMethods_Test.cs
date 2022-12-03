@@ -27,11 +27,5 @@ namespace AlgoTests
 
             Assert.AreEqual(charToIntArr[0], 'a');
         }
-
-        [TestMethod]
-        public void StringMethods(string letters)
-        {
-            
-        }
     }
 }
