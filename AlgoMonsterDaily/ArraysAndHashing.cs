@@ -25,22 +25,24 @@
         #endregion
         #region Contains Anagrams
         /// <summary>
-        /// Store strings into sorted character arrays. Compare values of each index. O(N log N) time 
+        /// Store strings into sorted character arrays. Compare values of each index. ~O(N log N) time 
         /// </summary>
         /// <param name="s">A string of characters to compare</param>
         /// <param name="t">A string of characters to compare</param>
         /// <returns>True if character array contain the same values. False otherwise.</returns>
         public static bool ContainsAnagrams(string s, string t)
         {
+            if (s.Length != t.Length) return false;
+
             var S = s.ToCharArray();
             var T = t.ToCharArray();
 
             Array.Sort(S);
             Array.Sort(T);
 
-            for (int i=0; i<S.Length; i++)
+            for (int i=0; i<s.Length; i++)
             {
-                if (S[i] != T[i]) return false;
+                if (S[i] != T[i]) return false; 
             }
 
             return true;
