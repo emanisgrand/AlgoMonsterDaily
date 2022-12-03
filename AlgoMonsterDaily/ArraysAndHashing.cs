@@ -89,6 +89,7 @@
 
     public static class Hashing
     {
+        #region Two Sum
         /// <summary>
         /// Use hashmap to store value:index pairs then retrieve indices based on target:value operation in O(n) time.
         /// </summary>
@@ -114,6 +115,7 @@
 
             return new int[] { 0, 0 };
         }
+        #endregion
         #region Contains Anagrams
         /// <summary>
         /// Create hash sets for each input string. Compare character count for each in O(s+t) || O(n) time.
