@@ -166,7 +166,6 @@
         #endregion
     }
 }
-
 namespace Medium
 {
     public static class Arrays
