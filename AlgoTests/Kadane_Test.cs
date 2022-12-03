@@ -24,9 +24,4 @@ namespace AlgoTests
             Assert.AreEqual(Kadane.KadaneLinear(arr), expected);
         }
     }
-
-    // Given an integer array nums, find the 
-    // subarray
-    // which has the largest sum and return its sum.
-
 }
