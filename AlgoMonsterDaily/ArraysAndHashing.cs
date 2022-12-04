@@ -207,8 +207,13 @@ namespace Medium
 
             foreach (string s in strs)
             {
+                // count 0 * 26?
                 var temp = s.ToCharArray();
                 Array.Sort(temp);
+                foreach (char c in s)
+                {
+                    // count ord(c) - ord("a") += 1?
+                }
             }
 
             foreach(string s in list)
