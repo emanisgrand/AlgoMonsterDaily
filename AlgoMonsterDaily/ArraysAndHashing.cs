@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using System.Text;
 
 namespace Easy
 {
@@ -202,29 +203,67 @@ namespace Medium
     public static class MediumHashing
     {
         /// <summary>
-        /// O(m∙n) using hashmap.
+        /// O(N•K•logK) time where N is the length of string list and K is the length of a string.
         /// </summary>
-        /// <param name="strs"></param>
-        /// <returns></returns>
-        public static List<List<string>> GroupAnagrams(List<string> strs)
+        /// <param name="strs">List of strings</param>
+        /// <returns>List of grouped strings.</returns>
+        public static List<List<string>> GroupAnagramsSorted(List<string> strs)
         {
-            Dictionary<string, List<string>> groups = new Dictionary<string, List<string>>();
+            // 🗄️ key string, value is list of strings
 
-            foreach (string s in strs)
+            //foreach string in strs
+
             {
-                char[] chars = s.ToCharArray();
-                // sort it
-                Array.Sort(chars);
-                // generate a key using the sorted array                
-                var key = new string(chars.ToArray());
-                // if the map doesn't have the key, create a new entry based on the key
-                groups.GetValueOrDefault(key, new List<string>());
-                // put the character string into the corresponding anagram list.
-                groups[key].Add(s);
-                
+                // put s to chars array
+
+                // sort it ✅
+
+                // generate the key (string) using the sorted array                 
+
+                // Try adding the key, or a new list otherwise
+
+                // Add s to the groups[key].
+
             }
 
-            return new List<List<string>>(groups.Values);
+            // return the values of the group as a new List of strings list
+            return new List<List<string>>();
+        }
+
+        /// <summary>
+        /// O(N•K + N•A) time complexity where N is size of the string array, K length of a string, A is counter array
+        /// </summary>
+        /// <param name="strs"></param>
+        /// <returns>Grouped string list.</returns>
+        public static List<List<string>> GroupAnagramsCounter(List<string> strs)
+        {
+
+            // foreach string in strs:   
+            
+            {
+                // declare a count array of size 26
+                // foreach character in string
+  
+                {
+                    // increment the count of that character (remember - 'a')
+                }
+                // going to need a stringbuilder
+                // then loop through the alphabet 
+            
+                {
+                    // and append count at the index.
+                    // Where not 1: count is \0 or null termination character.
+                    // this creates a unique string value based on the values in count
+            
+                    // apped a delimiter '#' to ensure no overlapping keys in the event of 1 11 || 11 1 which are not anagrams
+                }
+                // generate the key by sending the sb to string.
+                // tryadd the key otherwise a new arraylist
+                // Add s to the groups[key].
+            }
+
+            // return the values of the group as a new List of strings list
+            return new List<List<string>>();
         }
     }
 }

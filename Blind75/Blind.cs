@@ -89,7 +89,8 @@ namespace MediumTests
         public void GroupAnagramsTogether(string data)
         {
             var strs = Helpers.SplitWords(data).ToList();
-            MediumHashing.GroupAnagrams(strs);
+            MediumHashing.GroupAnagramsSorted(strs);
+            MediumHashing.GroupAnagramsCounter(strs);
         }
 
     }
