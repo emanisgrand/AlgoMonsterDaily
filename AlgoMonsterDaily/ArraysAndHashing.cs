@@ -1,4 +1,6 @@
-﻿namespace Easy
+﻿using System.ComponentModel;
+
+namespace Easy
 {
     public static class EasyArrays
     {
@@ -194,6 +196,11 @@ namespace Medium
 {
     public static class MediumArrays
     {
+        
+    }
+
+    public static class MediumHashing
+    {
         /// <summary>
         /// O(m∙n) using hashmap.
         /// </summary>
@@ -201,32 +208,23 @@ namespace Medium
         /// <returns></returns>
         public static List<List<string>> GroupAnagrams(List<string> strs)
         {
-            List<string> list = new List<string>();
-
-            Dictionary<char, List<string>> map = new Dictionary<char, List<string>>();
+            Dictionary<string, List<string>> groups = new Dictionary<string, List<string>>();
 
             foreach (string s in strs)
             {
-                // count 0 * 26?
-                var temp = s.ToCharArray();
-                Array.Sort(temp);
-                foreach (char c in s)
-                {
-                    // count ord(c) - ord("a") += 1?
-                }
+                char[] chars = s.ToCharArray();
+                // sort it
+                Array.Sort(chars);
+                // generate a key using the sorted array                
+                var key = new string(chars.ToArray());
+                // if the map doesn't have the key, create a new entry based on the key
+                groups.GetValueOrDefault(key, new List<string>());
+                // put the character string into the corresponding anagram list.
+                groups[key].Add(s);
+                
             }
 
-            foreach(string s in list)
-            {
-                Console.WriteLine(s);
-            }
-
-            return null;
+            return new List<List<string>>(groups.Values);
         }
-    }
-
-    public static class MediumHashing
-    {
-
     }
 }
