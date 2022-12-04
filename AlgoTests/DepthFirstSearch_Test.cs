@@ -1,6 +1,8 @@
 using Algorithms.Search;
 using DataStructures;
+using TestHelpers;
 using System.Data;
+
 
 namespace AlgoTests
 {

@@ -1,5 +1,5 @@
 using Algorithms;
-using Algorithms.Search;
+using TestHelpers;
 using System.Data;
 
 namespace AlgoTests

@@ -1,4 +1,4 @@
-﻿namespace Easy
+﻿namespace ArraysAndHashing
 {
     public static class Arrays
     {
@@ -88,7 +88,6 @@
         }
         #endregion
     }
-
     public static class Hashing
     {
         #region Two Sum
@@ -168,17 +167,5 @@
             return false;
         }
         #endregion
-    }
-}
-namespace Medium
-{
-    public static class Arrays
-    {
-
-    }
-
-    public static class Hashing
-    {
-
     }
 }

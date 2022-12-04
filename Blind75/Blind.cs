@@ -1,15 +1,17 @@
-using Easy;
-namespace AlgoTests
+using TestHelpers;
+using ArraysAndHashing;
+
+namespace Easy
 {
     [TestClass]
-    public class Blind75_Test
+    public class ArraysAndHashing
     {
         #region TwoSum
         [TestMethod]
-        [DataRow("2 7 11 15", 9, "0 1")]   
-        [DataRow("2 1 5 3",   6, "1 2")]   
-        [DataRow("2 1 5 3",  12, "0 0")]   
-        [DataRow("2 1 5 3",   8, "2 3")]   
+        [DataRow("2 7 11 15", 9, "0 1")]
+        [DataRow("2 1 5 3", 6, "1 2")]
+        [DataRow("2 1 5 3", 12, "0 0")]
+        [DataRow("2 1 5 3", 8, "2 3")]
         public void ReturnIndicesOfTwoNumbersInAnArrayThatAddUpToTargetValue(string data, int target, string output)
         {
             var nums = Helpers.SplitWords(data).Select(int.Parse).ToArray();
@@ -17,8 +19,8 @@ namespace AlgoTests
 
             int[] arr = Arrays.TwoSum(nums, target);
             int[] ans = Hashing.TwoSum(nums, target);
-            
-            for (int i =0; i<ans.Length; i++)
+
+            for (int i = 0; i < ans.Length; i++)
             {
                 Assert.AreEqual(expected[i], ans[i]);
                 Assert.AreEqual(expected[i], arr[i]);
@@ -75,4 +77,3 @@ namespace AlgoTests
         #endregion
     }
 }
-

@@ -1,7 +1,6 @@
 ﻿using DataStructures;
-using System.Collections;
 
-namespace AlgoTests
+namespace TestHelpers
 {
     public static class Helpers
     {
