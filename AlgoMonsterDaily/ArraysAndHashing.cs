@@ -104,13 +104,14 @@
 
             for (int i=0; i<nums.Length; i++)
             {
-                int diff = target - nums[i];
-                // check if diff value is already in the hashmap
+                // 1.
+                int diff = target - nums[i]; // 👻 
+                // 2. check if diff value is already in the hashmap
                 // if so, return the index of diff and the current index.
                 if (hashMap.ContainsKey(diff))
                     return new int[] {hashMap[diff], i};
 
-                // the current key nums[i] should be set to the current value, index i;
+                // 3. the current key nums[i] should be set to the current value, index i;
                 hashMap[nums[i]] = i;
             }
 
@@ -119,7 +120,7 @@
         #endregion
         #region Contains Anagrams
         /// <summary>
-        /// Create hash sets for each input string. Compare character count for each in O(s+t) || O(n) time.
+        /// Create hash maps for each input string. Compare character count for each in O(s+t) || O(n) time.
         /// </summary>
         /// <param name="s">A string of characters to compare</param>
         /// <param name="t">A string of characters to compare</param>
@@ -131,10 +132,10 @@
             Dictionary<char, int> S = new Dictionary<char, int>(); // 📦
             Dictionary<char, int> T = new Dictionary<char, int>(); // 📦
             
-            // use the length of the string to loop through the values. 
+            // use the length of the string to loop through the keys. 
             for (int i=0; i<s.Length; i++)  // 👣
             {
-                // if the key does not exist in the map, return 0.
+                // increment the ocurrences of key from the input by searching for Key and returning 0 if not found.
                 S[s[i]] = 1 + S.GetValueOrDefault(s[i], 0);
                 T[t[i]] = 1 + T.GetValueOrDefault(t[i], 0);
             }
@@ -163,6 +164,24 @@
                 if (set.Contains(n)) return true;
                 else 
                     set.Add(n);
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Uses inline operation to add the array value to the hash set.
+        /// </summary>
+        /// <param name="nums">array</param>
+        /// <returns>True if set contains value. False otherwise.</returns>
+        public static bool ContainsDuplicatesInline(int[] nums)
+        {
+            HashSet<int> s = new();
+
+            foreach (int i in nums)
+            {
+                bool added = s.Add(i); // inline operation
+
+                if (!added) return true;
             }
             return false;
         }

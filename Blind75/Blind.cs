@@ -32,11 +32,12 @@ namespace Easy
         [DataRow("anagram", "nagaram", true)]
         [DataRow("car", "rat", false)]
         [DataRow("farting", "fingart", true)]
-        [DataRow("some word", "another word", false)]
+        [DataRow("doppleganger", "peeplanggord", true)]
+        [DataRow("aacc", "ccac", false)]
         public void ReturnTrueIfStringsAreAnagramsOfEachOther(string s, string t, bool expected)
         {
             Assert.AreEqual(expected, Arrays.ContainsAnagrams(s, t));
-            //Assert.AreEqual(expected, Hashing.ContainsAnagrams(s, t));
+            Assert.AreEqual(expected, Hashing.ContainsAnagrams(s, t));
         }
         #endregion
         #region Contains Duplicates
