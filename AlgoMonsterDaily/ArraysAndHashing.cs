@@ -1,6 +1,6 @@
-﻿namespace ArraysAndHashing
+﻿namespace Easy
 {
-    public static class Arrays
+    public static class EasyArrays
     {
         #region Two Sum
         /// <summary>
@@ -88,7 +88,7 @@
         }
         #endregion
     }
-    public static class Hashing
+    public static class EasyHashing
     {
         #region Two Sum
         /// <summary>
@@ -135,14 +135,15 @@
             // use the length of the string to loop through the keys. 
             for (int i=0; i<s.Length; i++)  // 👣
             {
-                // increment the ocurrences of key from the input by searching for Key and returning 0 if not found.
+                //1. Set the value of the key = 1 + Get Value or Default to 0
                 S[s[i]] = 1 + S.GetValueOrDefault(s[i], 0);
+                
                 T[t[i]] = 1 + T.GetValueOrDefault(t[i], 0);
             }
-            // for each character in the string map . . .
+            // 2. for each character in the string map . . .
             foreach(char c in S.Keys)
             {
-                // check if the character (or some default) can be retrieved from the other string map. 
+                // 3. check if the character (or some default) can be retrieved from the other string map. 
                 if (S[c] != T.GetValueOrDefault(c, 0)) return false;
             }
             // retur true
@@ -186,5 +187,41 @@
             return false;
         }
         #endregion
+    }
+}
+
+namespace Medium
+{
+    public static class MediumArrays
+    {
+        /// <summary>
+        /// O(m∙n) using hashmap.
+        /// </summary>
+        /// <param name="strs"></param>
+        /// <returns></returns>
+        public static List<List<string>> GroupAnagrams(List<string> strs)
+        {
+            List<string> list = new List<string>();
+
+            Dictionary<char, List<string>> map = new Dictionary<char, List<string>>();
+
+            foreach (string s in strs)
+            {
+                var temp = s.ToCharArray();
+                Array.Sort(temp);
+            }
+
+            foreach(string s in list)
+            {
+                Console.WriteLine(s);
+            }
+
+            return null;
+        }
+    }
+
+    public static class MediumHashing
+    {
+
     }
 }

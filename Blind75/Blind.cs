@@ -1,32 +1,12 @@
 using TestHelpers;
-using ArraysAndHashing;
+using Easy;
+using Medium;
 
-namespace Easy
+namespace EasyTests
 {
     [TestClass]
     public class ArraysAndHashing
     {
-        #region TwoSum
-        [TestMethod]
-        [DataRow("2 7 11 15", 9, "0 1")]
-        [DataRow("2 1 5 3", 6, "1 2")]
-        [DataRow("2 1 5 3", 12, "0 0")]
-        [DataRow("2 1 5 3", 8, "2 3")]
-        public void ReturnIndicesOfTwoNumbersInAnArrayThatAddUpToTargetValue(string data, int target, string output)
-        {
-            var nums = Helpers.SplitWords(data).Select(int.Parse).ToArray();
-            var expected = Helpers.SplitWords(output).Select(int.Parse).ToArray();
-
-            int[] arr = Arrays.TwoSum(nums, target);
-            int[] ans = Hashing.TwoSum(nums, target);
-
-            for (int i = 0; i < ans.Length; i++)
-            {
-                Assert.AreEqual(expected[i], ans[i]);
-                Assert.AreEqual(expected[i], arr[i]);
-            }
-        }
-        #endregion
         #region Contains Anagrams
         [TestMethod]
         [DataRow("anagram", "nagaram", true)]
@@ -36,8 +16,8 @@ namespace Easy
         [DataRow("aacc", "ccac", false)]
         public void ReturnTrueIfStringsAreAnagramsOfEachOther(string s, string t, bool expected)
         {
-            Assert.AreEqual(expected, Arrays.ContainsAnagrams(s, t));
-            Assert.AreEqual(expected, Hashing.ContainsAnagrams(s, t));
+            Assert.AreEqual(expected, EasyArrays.ContainsAnagrams(s, t));
+            Assert.AreEqual(expected, EasyHashing.ContainsAnagrams(s, t));
         }
         #endregion
         #region Contains Duplicates
@@ -52,7 +32,7 @@ namespace Easy
         public void UseHasingToReturnTrueIfAnyValueAppearsAtLeastTwice(string data, bool expected)
         {
             var nums = Helpers.SplitWords(data).Select(int.Parse).ToArray();
-            Assert.AreEqual(expected, Hashing.ContainsDuplicates(nums));
+            Assert.AreEqual(expected, EasyHashing.ContainsDuplicates(nums));
         }
 
         [TestMethod]
@@ -61,7 +41,7 @@ namespace Easy
         public void ReturnTrueIfAnyValueAppearsAtLeastTwiceInAnUnsortedArray(string data, bool expected)
         {
             var nums = Helpers.SplitWords(data).Select(int.Parse).ToArray();
-            Assert.AreEqual(expected, Arrays.ContainsDuplicates(nums));
+            Assert.AreEqual(expected, EasyArrays.ContainsDuplicates(nums));
         }
 
         [TestMethod]
@@ -73,8 +53,44 @@ namespace Easy
         public void SortAnArrayAndReturnTrueIfAnyValueAppearsAtLeastTwice(string data, bool expected)
         {
             var nums = Helpers.SplitWords(data).Select(int.Parse).ToArray();
-            Assert.AreEqual(expected, Arrays.ContainsDuplicatesSorted(nums));
+            Assert.AreEqual(expected, EasyArrays.ContainsDuplicatesSorted(nums));
         }
         #endregion
+        #region TwoSum
+        [TestMethod]
+        [DataRow("2 7 11 15", 9, "0 1")]
+        [DataRow("2 1 5 3", 6, "1 2")]
+        [DataRow("2 1 5 3", 12, "0 0")]
+        [DataRow("2 1 5 3", 8, "2 3")]
+        public void ReturnIndicesOfTwoNumbersInAnArrayThatAddUpToTargetValue(string data, int target, string output)
+        {
+            var nums = Helpers.SplitWords(data).Select(int.Parse).ToArray();
+            var expected = Helpers.SplitWords(output).Select(int.Parse).ToArray();
+
+            int[] arr = EasyArrays.TwoSum(nums, target);
+            int[] ans = EasyHashing.TwoSum(nums, target);
+
+            for (int i = 0; i < ans.Length; i++)
+            {
+                Assert.AreEqual(expected[i], ans[i]);
+                Assert.AreEqual(expected[i], arr[i]);
+            }
+        }
+        #endregion
+    }
+}
+namespace MediumTests
+{
+    [TestClass]
+    public class ArraysAndHashing
+    {
+        [TestMethod]
+        [DataRow("eat tea tan ate nat bat")]
+        public void GroupAnagramsTogether(string data)
+        {
+            var strs = Helpers.SplitWords(data).ToList();
+            MediumArrays.GroupAnagrams(strs);
+        }
+
     }
 }
