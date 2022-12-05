@@ -35,20 +35,17 @@ namespace Easy
         /// <returns>True if character array contain the same values. False otherwise.</returns>
         public static bool ContainsAnagrams(string s, string t)
         {
-            // 0. check lengths are equal
+            if (s.Length != t.Length) return false;
+            char[] S = s.ToCharArray();// 🗄️
+            char[] T = t.ToCharArray();// 🗄️
 
-            // 🗄️
-            // 🗄️
+            Array.Sort(S);
+            Array.Sort(T);
             
-            // 1. sort the containers
-
-            // 2. loop through length of either string
-            
+            for (int i=0; i<s.Length; i++)
             {
-                // 1. if no match, return false
+                if (S[i] != T[i]) return false;
             }
-
-            // otherwise return true
             return true;
         }
         #endregion
@@ -132,10 +129,10 @@ namespace Easy
         public static bool ContainsAnagrams(string s, string t)
         {
             // 0. check lengths are equal
-            
-             // 📦  ❌
-             // 📦
+            if (s.Length != t.Length) return false;
 
+            Dictionary<char, int> S = new Dictionary<char, int>(); // 📦 
+            Dictionary<char, int> T = new Dictionary<char, int>(); // 📦
             // 1. use the length of the string to loop through the keys. 
             // 👣
             {
@@ -148,7 +145,7 @@ namespace Easy
             {
                 // 1. check if Map[character] is not equal in OtherMap by Getting Value of c or Default to 0.
                 // then return false
-             
+            
             }
             
             // otherwise return true.
@@ -205,72 +202,72 @@ namespace Medium
     public static class MediumHashing
     {
         /// <summary>
-        /// O(N•K•logK) time where N is the length of string list and K is the length of a string.
+        /// Sort a list of strings then groups them in O(N•K•logK) time where N is the number of strings in the array and K is the length of a string.
         /// </summary>
         /// <param name="strs">List of strings</param>
         /// <returns>List of grouped strings.</returns>
         public static List<List<string>> GroupAnagramsSorted(List<string> strs)
         {
-            // 🗄️ key string, value is list of strings
-
+            // 🗄️ key:string, value is list of strings
+            Dictionary<string, List<string>> groups = new Dictionary<string, List<string>>();
             //0. foreach string in strs
-
+            foreach(string s in strs)
             {
                 //1. put s to chars array
-
+                char[] chars = s.ToCharArray();
                 // sort it 
-
+                Array.Sort(chars);
                 //2. generate the key (string) using the sorted array                 
-
+                var key = chars.ToString();
                 //3. Try adding the key, or a new list otherwise
-
+                groups.TryAdd(key, new List<string>());
                 //4. Add s to the groups[key].
-
+                groups[key].Add(s);
             }
 
             // return the values of the group as a new List of strings list
-            return new List<List<string>>();
+            return new List<List<string>>(groups.Values);
         }
 
         /// <summary>
-        /// O(N•K + N•A) time complexity where N is size of the string array, K length of a string, A is counter array
+        /// Create KVP groupings based on string chars in O(N•K + N•A) time complexity where N is size of the string array, K length of a string, A is counter array
         /// </summary>
         /// <param name="strs"></param>
         /// <returns>Grouped string list.</returns>
         public static List<List<string>> GroupAnagramsCounter(List<string> strs)
         {
-            
+            Dictionary<string, List<string>> groups = new Dictionary<string, List<string>>();
             //0. foreach string in strs:   
-            
+            foreach (string s in strs)
             {
                 //1. declare a count array of size 26
-            
+                char[] count = new char[26];
                 //2. foreach character in string
-            
+                foreach (char c in s)
                 {
                     //1. increment the count of that character (remember - 'a')
-            
+                    count[c - 'a']++;
                 }
                 //3. going to need a stringbuilder
-            
+                StringBuilder sb = new StringBuilder();
                 //4. then loop through the alphabet 
-            
+                for (int i=0; i<26; i++)
                 {
                     //1.append count at the index.
-            
+                    sb.Append(count[i]);
                     //2. append a delimiter '#' to ensure no overlapping keys in the event of 1 11 || 11 1 which are not anagrams
-            
+                    sb.Append('#');
                 }
                 //5. generate the key by sending the sb to string.
-            
+                var key = sb.ToString();
                 //6. tryadd the key otherwise a new arraylist
-            
+                groups.TryAdd(key, new());
                 //7. Add s to the groups[key].
-            
+                groups[key].Add(s);
             }
 
             // return the values of the group as a new List of strings list
-            return new List<List<string>>();
+            return new List<List<string>>(groups.Values);
         }
     }
 }

@@ -90,7 +90,9 @@ namespace MediumTests
         {
             var strs = Helpers.SplitWords(data).ToList();
             MediumHashing.GroupAnagramsSorted(strs);
-            MediumHashing.GroupAnagramsCounter(strs);
+            var res = MediumHashing.GroupAnagramsCounter(strs);
+
+           // Assert.AreEqual(res.Count, 3);
         }
 
     }
