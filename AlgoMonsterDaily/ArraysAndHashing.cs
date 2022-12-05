@@ -35,19 +35,20 @@ namespace Easy
         /// <returns>True if character array contain the same values. False otherwise.</returns>
         public static bool ContainsAnagrams(string s, string t)
         {
-            if (s.Length != t.Length) return false;
+            // 0. check lengths are equal
 
-            var S = s.ToCharArray();
-            var T = t.ToCharArray();
+            // 🗄️
+            // 🗄️
+            
+            // 1. sort the containers
 
-            Array.Sort(S);
-            Array.Sort(T);
-
-            for (int i=0; i<s.Length; i++)
+            // 2. loop through length of either string
+            
             {
-                if (S[i] != T[i]) return false; 
+                // 1. if no match, return false
             }
 
+            // otherwise return true
             return true;
         }
         #endregion
@@ -130,26 +131,27 @@ namespace Easy
         /// <returns>True if sets contain all matching kvps. False otherwise.</returns>
         public static bool ContainsAnagrams(string s, string t)
         {
-            if (s.Length != t.Length) return false;
+            // 0. check lengths are equal
             
-            Dictionary<char, int> S = new Dictionary<char, int>(); // 📦
-            Dictionary<char, int> T = new Dictionary<char, int>(); // 📦
+             // 📦  ❌
+             // 📦
+
+            // 1. use the length of the string to loop through the keys. 
+            // 👣
+            {
+                //1. Set the values of the keys = 1 + Get Value of key str[i] or Default to 0
             
-            // use the length of the string to loop through the keys. 
-            for (int i=0; i<s.Length; i++)  // 👣
-            {
-                //1. Set the value of the key = 1 + Get Value or Default to 0
-                S[s[i]] = 1 + S.GetValueOrDefault(s[i], 0);
-                
-                T[t[i]] = 1 + T.GetValueOrDefault(t[i], 0);
+            
             }
-            // 2. for each character in the string map . . .
-            foreach(char c in S.Keys)
+            // 2. for each character in either string map's Keys . . .
+            
             {
-                // 3. check if the character (or some default) can be retrieved from the other string map. 
-                if (S[c] != T.GetValueOrDefault(c, 0)) return false;
+                // 1. check if Map[character] is not equal in OtherMap by Getting Value of c or Default to 0.
+                // then return false
+             
             }
-            // retur true
+            
+            // otherwise return true.
             return true;
         }
         #endregion
@@ -211,18 +213,18 @@ namespace Medium
         {
             // 🗄️ key string, value is list of strings
 
-            //foreach string in strs
+            //0. foreach string in strs
 
             {
-                // put s to chars array
+                //1. put s to chars array
 
-                // sort it ✅
+                // sort it 
 
-                // generate the key (string) using the sorted array                 
+                //2. generate the key (string) using the sorted array                 
 
-                // Try adding the key, or a new list otherwise
+                //3. Try adding the key, or a new list otherwise
 
-                // Add s to the groups[key].
+                //4. Add s to the groups[key].
 
             }
 
@@ -237,29 +239,34 @@ namespace Medium
         /// <returns>Grouped string list.</returns>
         public static List<List<string>> GroupAnagramsCounter(List<string> strs)
         {
-
-            // foreach string in strs:   
+            
+            //0. foreach string in strs:   
             
             {
-                // declare a count array of size 26
-                // foreach character in string
-  
-                {
-                    // increment the count of that character (remember - 'a')
-                }
-                // going to need a stringbuilder
-                // then loop through the alphabet 
+                //1. declare a count array of size 26
+            
+                //2. foreach character in string
             
                 {
-                    // and append count at the index.
-                    // Where not 1: count is \0 or null termination character.
-                    // this creates a unique string value based on the values in count
+                    //1. increment the count of that character (remember - 'a')
             
-                    // apped a delimiter '#' to ensure no overlapping keys in the event of 1 11 || 11 1 which are not anagrams
                 }
-                // generate the key by sending the sb to string.
-                // tryadd the key otherwise a new arraylist
-                // Add s to the groups[key].
+                //3. going to need a stringbuilder
+            
+                //4. then loop through the alphabet 
+            
+                {
+                    //1.append count at the index.
+            
+                    //2. append a delimiter '#' to ensure no overlapping keys in the event of 1 11 || 11 1 which are not anagrams
+            
+                }
+                //5. generate the key by sending the sb to string.
+            
+                //6. tryadd the key otherwise a new arraylist
+            
+                //7. Add s to the groups[key].
+            
             }
 
             // return the values of the group as a new List of strings list
