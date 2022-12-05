@@ -191,11 +191,6 @@ namespace Easy
 
 namespace Medium
 {
-    public static class MediumArrays
-    {
-        
-    }
-
     public static class MediumHashing
     {
         /// <summary>
@@ -215,7 +210,6 @@ namespace Medium
                 bucket[n] = bucket.GetValueOrDefault(n, new List<int>(0));
             }
             
-
             return freq;
         }
         #region Anagrams
