@@ -100,23 +100,22 @@ namespace Easy
         /// <returns>Int array with indices of summed values</returns>
         public static int[] TwoSum(int[] nums, int target)
         {
-            // every previous element to the current element is stored in this map
+            // 📦
             Dictionary<int, int> hashMap = new Dictionary<int, int>();
-
+            // 0. loop through the nums in the array
             for (int i=0; i<nums.Length; i++)
             {
-                // 1.
-                int diff = target - nums[i]; // 👻 
-                // 2. check if diff value is already in the hashmap
-                // if so, return the index of diff and the current index.
+                // 1. 👻
+                int diff = target - nums[i]; 
+                // 2. check if diff value is already in the hashmap, if so return int[] with diff index and current index
                 if (hashMap.ContainsKey(diff))
                     return new int[] {hashMap[diff], i};
 
-                // 3. the current key nums[i] should be set to the current value, index i;
+                // 3. Set the kvp of the current number in the array to its index.
                 hashMap[nums[i]] = i;
             }
 
-            return new int[] { 0, 0 };
+            return new int[] { hashMap[0], 0 };
         }
         #endregion
         #region Contains Anagrams

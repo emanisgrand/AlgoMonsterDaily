@@ -94,12 +94,23 @@ namespace MediumTests
         }
 
         [TestMethod]
-        [DataRow("eat tea tan ate nat bat")]
-        public void GroupAnagramsTestSimulatingLeetcodeEnvironment(string data)
+        [DataRow(new string[] { "eat", "tea", "tan ", "ate", "nat", "bat" })]
+        public void GroupAnagramsTestSimulatingLeetcodeEnvironment(string[] data)
         {
-            var strs = Helpers.SplitWords(data).ToArray();
+
             LeetCodeSim leetCodeSim = new LeetCodeSim();
-            leetCodeSim.GroupAnagrams(strs);
+            leetCodeSim.GroupAnagrams(data);
+        }
+
+        [TestMethod]
+        [DataRow(new string[] { "coupon", "sincompoop", "ads", "yada" ,"reddick" })]
+        public void SimpleOrderByExample(string[] data)
+        {
+            var ordered = data.OrderBy(n => n);
+            foreach (string s in ordered)
+            {
+                Console.WriteLine(s);
+            }
         }
     }
 }
