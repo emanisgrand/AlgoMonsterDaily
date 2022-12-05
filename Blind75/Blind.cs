@@ -91,9 +91,15 @@ namespace MediumTests
             var strs = Helpers.SplitWords(data).ToList();
             MediumHashing.GroupAnagramsSorted(strs);
             var res = MediumHashing.GroupAnagramsCounter(strs);
-
-           // Assert.AreEqual(res.Count, 3);
         }
 
+        [TestMethod]
+        [DataRow("eat tea tan ate nat bat")]
+        public void GroupAnagramsTestSimulatingLeetcodeEnvironment(string data)
+        {
+            var strs = Helpers.SplitWords(data).ToArray();
+            LeetCodeSim leetCodeSim = new LeetCodeSim();
+            leetCodeSim.GroupAnagrams(strs);
+        }
     }
 }

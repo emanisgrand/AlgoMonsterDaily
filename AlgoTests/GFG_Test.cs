@@ -1,4 +1,5 @@
 using Algorithms.Search;
+using TestHelpers;
 
 namespace AlgoTests
 {

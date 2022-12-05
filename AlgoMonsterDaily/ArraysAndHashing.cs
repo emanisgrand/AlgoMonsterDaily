@@ -134,18 +134,18 @@ namespace Easy
             Dictionary<char, int> S = new Dictionary<char, int>(); // 📦 
             Dictionary<char, int> T = new Dictionary<char, int>(); // 📦
             // 1. use the length of the string to loop through the keys. 
-            // 👣
+            for (int i=0; i<s.Length; i++)// 👣
             {
                 //1. Set the values of the keys = 1 + Get Value of key str[i] or Default to 0
-            
-            
+                S[s[i]] = 1 + S.GetValueOrDefault(s[i], 0);
+                T[t[i]] = 1 + T.GetValueOrDefault(t[i], 0);
             }
             // 2. for each character in either string map's Keys . . .
-            
+            foreach (char c in S.Keys)
             {
                 // 1. check if Map[character] is not equal in OtherMap by Getting Value of c or Default to 0.
                 // then return false
-            
+                if (S[c] != T.GetValueOrDefault(c, 0)) return false;
             }
             
             // otherwise return true.
@@ -211,15 +211,15 @@ namespace Medium
             // 🗄️ key:string, value is list of strings
             Dictionary<string, List<string>> groups = new Dictionary<string, List<string>>();
             //0. foreach string in strs
-            foreach(string s in strs)
+            foreach (string s in strs)
             {
                 //1. put s to chars array
                 char[] chars = s.ToCharArray();
                 // sort it 
                 Array.Sort(chars);
                 //2. generate the key (string) using the sorted array                 
-                var key = chars.ToString();
-                //3. Try adding the key, or a new list otherwise
+                var key = new string(chars).ToString();
+                //3. Try adding the key list pair if it doesn't already exist
                 groups.TryAdd(key, new List<string>());
                 //4. Add s to the groups[key].
                 groups[key].Add(s);
@@ -268,6 +268,25 @@ namespace Medium
 
             // return the values of the group as a new List of strings list
             return new List<List<string>>(groups.Values);
+        }
+    }
+
+    public class LeetCodeSim
+    {
+        public IList<IList<string>> GroupAnagrams(string[] strs)
+        {
+            Dictionary<string, List<string>> groups = new Dictionary<string, List<string>>();
+
+            foreach (string s in strs)
+            {
+                string key = new string(s.OrderBy(x => x).ToArray());
+
+                groups.TryAdd(key, new List<string>());
+
+                groups[key].Add(s);
+            }
+
+            return new List<IList<string>>(groups.Values);
         }
     }
 }
