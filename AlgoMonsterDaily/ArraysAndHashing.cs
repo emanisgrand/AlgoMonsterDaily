@@ -100,21 +100,20 @@ namespace Easy
         /// <returns>Int array with indices of summed values</returns>
         public static int[] TwoSum(int[] nums, int target)
         {
-            // 📦
-            
+            Dictionary<int, int> map = new Dictionary<int, int>();  /*📦*/
             // 0. loop through the nums in the array
-            
+            for (int i=0; i<nums.Length; i++)
             {
-                // 1. 👻
-            
-                // 2. check if diff value is already in the hashmap, if so return int[] with diff index and current index
-                
+            int diff = target - nums[i]; /*👻*/
+                // 2. check if this key is already in the hashmap, if so return int[] with diff index and current index
+                if (map.ContainsKey(diff))
+                    return new int[] { map[diff], i };
 
                 // 3. Set the kvp of the current number in the array to its index.
-                
+                map[nums[i]] = i;  // ❌
             }
 
-            return null;
+            return new int[] { 0,0 };
         }
         #endregion
         #region Contains Anagrams
@@ -200,6 +199,27 @@ namespace Medium
     public static class MediumHashing
     {
         /// <summary>
+        /// O(n)
+        /// </summary>
+        /// <param name="nums"></param>
+        /// <param name="k">Amount of values to return.</param>
+        public static int[] TopKFrequent(int[] nums, int k)
+        {
+            Dictionary<int, List<int>> bucket = new Dictionary<int, List<int>>();
+            int[] freq = new int[k];
+            //or
+            int[] freqs = new int[nums.Length + 1];
+
+            foreach (int n in nums)
+            {
+                bucket[n] = bucket.GetValueOrDefault(n, new List<int>(0));
+            }
+            
+
+            return freq;
+        }
+        #region Anagrams
+        /// <summary>
         /// Sort a list of strings then groups them in O(N•K•logK) time where N is the number of strings in the array and K is the length of a string.
         /// </summary>
         /// <param name="strs">List of strings</param>
@@ -207,24 +227,25 @@ namespace Medium
         public static List<List<string>> GroupAnagramsSorted(List<string> strs)
         {
             // 🗄️ key:string, value is list of strings
-            
+            Dictionary<string, List<string>> groups = new Dictionary<string, List<string>>();
             //0. foreach string in strs
-            
+            foreach (string s in strs)
             {
-                //1. put s to chars array
                 
-                // sort it 
-                
+                //1. put s to chars array and sort it.
+                /*char[] chars = s.ToCharArray();
+                Array.Sort(chars);*/
                 //2. generate the key (string) using the sorted array                 
-                
+                /*string key = new string(chars);*/
+                var key = s.OrderBy(x => x).ToString();
                 //3. Try adding the key list pair if it doesn't already exist
-                
+                groups.TryAdd(key, new List<string>());
                 //4. Add s to the groups[key].
-                
+                groups[key].Add(s);
             }
 
             // return the values of the group as a new List of strings list
-            
+            return new List<List<string>>(groups.Values);
         }
 
         /// <summary>
@@ -234,7 +255,7 @@ namespace Medium
         /// <returns>Grouped string list.</returns>
         public static List<List<string>> GroupAnagramsCounter(List<string> strs)
         {
-            
+            Dictionary<string, List<string>> groups = new Dictionary<string, List<string>>();
             //0. foreach string in strs:   
             
             {
@@ -265,10 +286,10 @@ namespace Medium
             }
 
             // return the values of the group as a new List of strings list
-            
+            return new List<List<string>>(groups.Values);
         }
     }
-
+    #endregion
     public class LeetCodeSim
     {
         public IList<IList<string>> GroupAnagrams(string[] strs)
