@@ -101,21 +101,20 @@ namespace Easy
         public static int[] TwoSum(int[] nums, int target)
         {
             // 📦
-            Dictionary<int, int> hashMap = new Dictionary<int, int>();
+            
             // 0. loop through the nums in the array
-            for (int i=0; i<nums.Length; i++)
+            
             {
                 // 1. 👻
-                int diff = target - nums[i]; 
+            
                 // 2. check if diff value is already in the hashmap, if so return int[] with diff index and current index
-                if (hashMap.ContainsKey(diff))
-                    return new int[] {hashMap[diff], i};
+                
 
                 // 3. Set the kvp of the current number in the array to its index.
-                hashMap[nums[i]] = i;
+                
             }
 
-            return new int[] { hashMap[0], 0 };
+            return null;
         }
         #endregion
         #region Contains Anagrams
@@ -208,24 +207,24 @@ namespace Medium
         public static List<List<string>> GroupAnagramsSorted(List<string> strs)
         {
             // 🗄️ key:string, value is list of strings
-            Dictionary<string, List<string>> groups = new Dictionary<string, List<string>>();
+            
             //0. foreach string in strs
-            foreach (string s in strs)
+            
             {
                 //1. put s to chars array
-                char[] chars = s.ToCharArray();
+                
                 // sort it 
-                Array.Sort(chars);
+                
                 //2. generate the key (string) using the sorted array                 
-                var key = new string(chars).ToString();
+                
                 //3. Try adding the key list pair if it doesn't already exist
-                groups.TryAdd(key, new List<string>());
+                
                 //4. Add s to the groups[key].
-                groups[key].Add(s);
+                
             }
 
             // return the values of the group as a new List of strings list
-            return new List<List<string>>(groups.Values);
+            
         }
 
         /// <summary>
@@ -235,38 +234,38 @@ namespace Medium
         /// <returns>Grouped string list.</returns>
         public static List<List<string>> GroupAnagramsCounter(List<string> strs)
         {
-            Dictionary<string, List<string>> groups = new Dictionary<string, List<string>>();
+            
             //0. foreach string in strs:   
-            foreach (string s in strs)
+            
             {
                 //1. declare a count array of size 26
-                char[] count = new char[26];
+                
                 //2. foreach character in string
-                foreach (char c in s)
+                
                 {
                     //1. increment the count of that character (remember - 'a')
-                    count[c - 'a']++;
+                
                 }
                 //3. going to need a stringbuilder
-                StringBuilder sb = new StringBuilder();
+                
                 //4. then loop through the alphabet 
-                for (int i=0; i<26; i++)
+                
                 {
                     //1.append count at the index.
-                    sb.Append(count[i]);
+                
                     //2. append a delimiter '#' to ensure no overlapping keys in the event of 1 11 || 11 1 which are not anagrams
-                    sb.Append('#');
+                
                 }
                 //5. generate the key by sending the sb to string.
-                var key = sb.ToString();
+                
                 //6. tryadd the key otherwise a new arraylist
-                groups.TryAdd(key, new());
+            
                 //7. Add s to the groups[key].
-                groups[key].Add(s);
+            
             }
 
             // return the values of the group as a new List of strings list
-            return new List<List<string>>(groups.Values);
+            
         }
     }
 
