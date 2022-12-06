@@ -125,27 +125,22 @@ namespace Easy
         /// <returns>True if sets contain all matching kvps. False otherwise.</returns>
         public static bool ContainsAnagrams(string s, string t)
         {
-            // 0. check lengths are equal
             if (s.Length != t.Length) return false;
 
             Dictionary<char, int> S = new Dictionary<char, int>(); // 📦 
             Dictionary<char, int> T = new Dictionary<char, int>(); // 📦
-            // 1. use the length of the string to loop through the keys. 
+         
             for (int i=0; i<s.Length; i++)// 👣
             {
-                //1. Set the values of the keys = 1 + Get Value of key str[i] or Default to 0
                 S[s[i]] = 1 + S.GetValueOrDefault(s[i], 0);
                 T[t[i]] = 1 + T.GetValueOrDefault(t[i], 0);
             }
-            // 2. for each character in either string map's Keys . . .
+
             foreach (char c in S.Keys)
             {
-                // 1. check if Map[character] is not equal in OtherMap by Getting Value of c or Default to 0.
-                // then return false
                 if (S[c] != T.GetValueOrDefault(c, 0)) return false;
             }
             
-            // otherwise return true.
             return true;
         }
         #endregion
@@ -187,12 +182,53 @@ namespace Easy
         }
         #endregion
     }
+
+/*
+using System;
+
+class Solution
+{
+    public static int IndexEqualsValueSearch(int[] arr)
+    {
+      int left = 0;
+      int right = arr.Length;
+      
+      while (left <= right)
+      {
+        int mid = left + (right - left) / 2;
+        
+        if (arr[mid] == mid)
+        {
+          return mid;
+        }
+        if (arr[mid] < mid)
+        {
+          left = mid+1;
+        }else
+        {
+          right = mid -1;
+        }
+        
+      }
+      return -1;
+    }
+
+    static void Main(string[] args)
+    {
+      int[] arr = {-8, 0, 2, 5};
+      
+      Console.WriteLine(IndexEqualsValueSearch(arr));
+      
+    }
+}     
+*/
 }
 
 namespace Medium
 {
     public static class MediumHashing
     {
+        #region Top K Frequent
         /// <summary>
         /// O(n)
         /// </summary>
@@ -212,6 +248,7 @@ namespace Medium
             
             return freq;
         }
+        #endregion
         #region Anagrams
         /// <summary>
         /// Sort a list of strings then groups them in O(N•K•logK) time where N is the number of strings in the array and K is the length of a string.
@@ -220,25 +257,17 @@ namespace Medium
         /// <returns>List of grouped strings.</returns>
         public static List<List<string>> GroupAnagramsSorted(List<string> strs)
         {
-            // 🗄️ key:string, value is list of strings
+            /*📦*/ 
             Dictionary<string, List<string>> groups = new Dictionary<string, List<string>>();
-            //0. foreach string in strs
             foreach (string s in strs)
             {
-                
-                //1. put s to chars array and sort it.
                 /*char[] chars = s.ToCharArray();
-                Array.Sort(chars);*/
-                //2. generate the key (string) using the sorted array                 
+                Array.Sort(chars);*/                
                 /*string key = new string(chars);*/
-                var key = s.OrderBy(x => x).ToString();
-                //3. Try adding the key list pair if it doesn't already exist
+                string key = new string(s.OrderBy(x => x).ToArray());
                 groups.TryAdd(key, new List<string>());
-                //4. Add s to the groups[key].
                 groups[key].Add(s);
             }
-
-            // return the values of the group as a new List of strings list
             return new List<List<string>>(groups.Values);
         }
 
@@ -251,32 +280,32 @@ namespace Medium
         {
             Dictionary<string, List<string>> groups = new Dictionary<string, List<string>>();
             //0. foreach string in strs:   
-            
+            foreach (string s in strs)
             {
                 //1. declare a count array of size 26
-                
+                char[] count = new char[26];
                 //2. foreach character in string
-                
+                foreach(char c in s)
                 {
                     //1. increment the count of that character (remember - 'a')
-                
+                    count[c - 'a']++;
                 }
                 //3. going to need a stringbuilder
-                
-                //4. then loop through the alphabet 
-                
+                StringBuilder sb = new StringBuilder();
+                //4. Generate a key by making one out of the char array using StringBuilder
+                for(int i=0; i<26; i++)
                 {
                     //1.append count at the index.
-                
+                    sb.Append(count[i]);
                     //2. append a delimiter '#' to ensure no overlapping keys in the event of 1 11 || 11 1 which are not anagrams
-                
+                    sb.Append('#');
                 }
                 //5. generate the key by sending the sb to string.
-                
+                var key = sb.ToString();
                 //6. tryadd the key otherwise a new arraylist
-            
+                groups.TryAdd(key, new List<string>());
                 //7. Add s to the groups[key].
-            
+                groups[key].Add(s);
             }
 
             // return the values of the group as a new List of strings list
@@ -300,6 +329,85 @@ namespace Medium
             }
 
             return new List<IList<string>>(groups.Values);
+        }
+    }
+}
+
+namespace PrampPracetice
+{ 
+    public static class Pramp
+    {
+        #region Cheapest Cost (N-Ary Tree)
+        public class Node
+        {
+            public int cost;
+            public Node[] children;
+            public Node parent;
+        }
+
+        public static int getCheapestCost(Node rootNode)
+        {
+            // RECURSE
+
+            // 1. check if the current node has any children.
+            int n = rootNode.children.Length; // 👻
+            // 2. if not, you are at a leaf node, return the node's cost.
+            if (n == 0) return rootNode.cost;
+            else
+            {
+                // 1. otherwise start looking for the minCost by looping through the children
+                int minCost = Int32.MaxValue;  // 🌟
+                for (int i = 0; i < n; i++)
+                {
+                    // 2. find cheapest cost from among the little children recursively
+                    int tempCost = getCheapestCost(rootNode.children[i]);
+                    // 3. if the cost returned is less than the current minimum cost, update mincost
+                    if (tempCost < minCost)
+                        minCost = tempCost;
+                }
+                // 3. return the minCost plus the cost of the node to the stack.
+                return minCost + rootNode.cost;
+            }
+        }
+        #endregion
+        public static char[] ReverseWords(char[] arr)
+        {
+            // 1. reverse all the characters in arr 
+            int start = 0;
+            for (int end=0; end<arr.Length; end++)
+            {
+                // if we've encountered a space
+                // reverse the previous word (between the indices start and end -1)
+                if (arr[end] == ' ')
+                {
+                    mirrorReverse(arr, start, end);
+                    start = end + 1;
+                }
+            }
+
+            // Reverse the last word
+            mirrorReverse(arr, start, arr.Length - 1);
+
+
+            // Reverse the entire string
+            mirrorReverse(arr, 0, arr.Length - 1);
+            
+            return arr;
+        }
+
+        public static void mirrorReverse(char[] arr, int start, int end)
+        {
+            /*🌡️*/ // store character
+            char tmp; 
+            while (start < end)
+            {
+                // swap the first and last characters
+                tmp = arr[start];
+                arr[start] = arr[end];
+                arr[end] = tmp;
+                start++;
+                end--;
+            }
         }
     }
 }

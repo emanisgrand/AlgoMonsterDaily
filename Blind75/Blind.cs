@@ -1,6 +1,7 @@
 using TestHelpers;
 using Easy;
 using Medium;
+using PrampPracetice;
 
 namespace EasyTests
 {
@@ -123,5 +124,19 @@ namespace MediumTests
             }
         }
         #endregion
+    }
+}
+namespace PrampTests
+{
+    [TestClass]
+    public class PrampTesting
+    {
+        [TestMethod]
+        [DataRow(new char[] { 'p', 'e', 'r', 'f', 'e', 'c', 't', ' ', 'm', 'a', 'k', 'e', 's', ' ', 'p', 'r', 'a', 'c', 't', 'i', 'c', 'e', ' ' })]
+        public void SentenceReverse(char[] arr)
+        {
+            Pramp.ReverseWords(arr);
+            Console.WriteLine(arr);
+        }
     }
 }
