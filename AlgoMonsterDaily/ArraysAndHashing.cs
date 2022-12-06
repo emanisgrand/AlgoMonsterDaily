@@ -1,4 +1,7 @@
-﻿namespace Easy
+﻿using System.ComponentModel;
+using System.Text;
+
+namespace Easy
 {
     public static class EasyArrays
     {
@@ -33,18 +36,16 @@
         public static bool ContainsAnagrams(string s, string t)
         {
             if (s.Length != t.Length) return false;
-
-            var S = s.ToCharArray();
-            var T = t.ToCharArray();
+            char[] S = s.ToCharArray();// 🗄️
+            char[] T = t.ToCharArray();// 🗄️
 
             Array.Sort(S);
             Array.Sort(T);
-
+            
             for (int i=0; i<s.Length; i++)
             {
-                if (S[i] != T[i]) return false; 
+                if (S[i] != T[i]) return false;
             }
-
             return true;
         }
         #endregion
@@ -99,23 +100,20 @@
         /// <returns>Int array with indices of summed values</returns>
         public static int[] TwoSum(int[] nums, int target)
         {
-            // every previous element to the current element is stored in this map
-            Dictionary<int, int> hashMap = new Dictionary<int, int>();
-
+            Dictionary<int, int> map = new Dictionary<int, int>();  /*📦*/
+            // 0. loop through the nums in the array
             for (int i=0; i<nums.Length; i++)
             {
-                // 1.
-                int diff = target - nums[i]; // 👻 
-                // 2. check if diff value is already in the hashmap
-                // if so, return the index of diff and the current index.
-                if (hashMap.ContainsKey(diff))
-                    return new int[] {hashMap[diff], i};
+            int diff = target - nums[i]; /*👻*/
+                // 2. check if this key is already in the hashmap, if so return int[] with diff index and current index
+                if (map.ContainsKey(diff))
+                    return new int[] { map[diff], i };
 
-                // 3. the current key nums[i] should be set to the current value, index i;
-                hashMap[nums[i]] = i;
+                // 3. Set the kvp of the current number in the array to its index.
+                map[nums[i]] = i;  // ❌
             }
 
-            return new int[] { 0, 0 };
+            return new int[] { 0,0 };
         }
         #endregion
         #region Contains Anagrams
@@ -128,25 +126,21 @@
         public static bool ContainsAnagrams(string s, string t)
         {
             if (s.Length != t.Length) return false;
-            
-            Dictionary<char, int> S = new Dictionary<char, int>(); // 📦
+
+            Dictionary<char, int> S = new Dictionary<char, int>(); // 📦 
             Dictionary<char, int> T = new Dictionary<char, int>(); // 📦
-            
-            // use the length of the string to loop through the keys. 
-            for (int i=0; i<s.Length; i++)  // 👣
+         
+            for (int i=0; i<s.Length; i++)// 👣
             {
-                //1. Set the value of the key = 1 + Get Value or Default to 0
                 S[s[i]] = 1 + S.GetValueOrDefault(s[i], 0);
-                
                 T[t[i]] = 1 + T.GetValueOrDefault(t[i], 0);
             }
-            // 2. for each character in the string map . . .
-            foreach(char c in S.Keys)
+
+            foreach (char c in S.Keys)
             {
-                // 3. check if the character (or some default) can be retrieved from the other string map. 
                 if (S[c] != T.GetValueOrDefault(c, 0)) return false;
             }
-            // retur true
+            
             return true;
         }
         #endregion
@@ -188,40 +182,232 @@
         }
         #endregion
     }
+
+/*
+using System;
+
+class Solution
+{
+    public static int IndexEqualsValueSearch(int[] arr)
+    {
+      int left = 0;
+      int right = arr.Length;
+      
+      while (left <= right)
+      {
+        int mid = left + (right - left) / 2;
+        
+        if (arr[mid] == mid)
+        {
+          return mid;
+        }
+        if (arr[mid] < mid)
+        {
+          left = mid+1;
+        }else
+        {
+          right = mid -1;
+        }
+        
+      }
+      return -1;
+    }
+
+    static void Main(string[] args)
+    {
+      int[] arr = {-8, 0, 2, 5};
+      
+      Console.WriteLine(IndexEqualsValueSearch(arr));
+      
+    }
+}     
+*/
 }
 
 namespace Medium
 {
-    public static class MediumArrays
+    public static class MediumHashing
     {
+        #region Top K Frequent
         /// <summary>
-        /// O(m∙n) using hashmap.
+        /// O(n)
+        /// </summary>
+        /// <param name="nums"></param>
+        /// <param name="k">Amount of values to return.</param>
+        public static int[] TopKFrequent(int[] nums, int k)
+        {
+            Dictionary<int, List<int>> bucket = new Dictionary<int, List<int>>();
+            int[] freq = new int[k];
+            //or
+            int[] freqs = new int[nums.Length + 1];
+
+            foreach (int n in nums)
+            {
+                bucket[n] = bucket.GetValueOrDefault(n, new List<int>(0));
+            }
+            
+            return freq;
+        }
+        #endregion
+        #region Anagrams
+        /// <summary>
+        /// Sort a list of strings then groups them in O(N•K•logK) time where N is the number of strings in the array and K is the length of a string.
+        /// </summary>
+        /// <param name="strs">List of strings</param>
+        /// <returns>List of grouped strings.</returns>
+        public static List<List<string>> GroupAnagramsSorted(List<string> strs)
+        {
+            /*📦*/ 
+            Dictionary<string, List<string>> groups = new Dictionary<string, List<string>>();
+            foreach (string s in strs)
+            {
+                /*char[] chars = s.ToCharArray();
+                Array.Sort(chars);*/                
+                /*string key = new string(chars);*/
+                string key = new string(s.OrderBy(x => x).ToArray());
+                groups.TryAdd(key, new List<string>());
+                groups[key].Add(s);
+            }
+            return new List<List<string>>(groups.Values);
+        }
+
+        /// <summary>
+        /// Create KVP groupings based on string chars in O(N•K + N•A) time complexity where N is size of the string array, K length of a string, A is counter array
         /// </summary>
         /// <param name="strs"></param>
-        /// <returns></returns>
-        public static List<List<string>> GroupAnagrams(List<string> strs)
+        /// <returns>Grouped string list.</returns>
+        public static List<List<string>> GroupAnagramsCounter(List<string> strs)
         {
-            List<string> list = new List<string>();
+            Dictionary<string, List<string>> groups = new Dictionary<string, List<string>>();
+            //0. foreach string in strs:   
+            foreach (string s in strs)
+            {
+                //1. declare a count array of size 26
+                char[] count = new char[26];
+                //2. foreach character in string
+                foreach(char c in s)
+                {
+                    //1. increment the count of that character (remember - 'a')
+                    count[c - 'a']++;
+                }
+                //3. going to need a stringbuilder
+                StringBuilder sb = new StringBuilder();
+                //4. Generate a key by making one out of the char array using StringBuilder
+                for(int i=0; i<26; i++)
+                {
+                    //1.append count at the index.
+                    sb.Append(count[i]);
+                    //2. append a delimiter '#' to ensure no overlapping keys in the event of 1 11 || 11 1 which are not anagrams
+                    sb.Append('#');
+                }
+                //5. generate the key by sending the sb to string.
+                var key = sb.ToString();
+                //6. tryadd the key otherwise a new arraylist
+                groups.TryAdd(key, new List<string>());
+                //7. Add s to the groups[key].
+                groups[key].Add(s);
+            }
 
-            Dictionary<char, List<string>> map = new Dictionary<char, List<string>>();
+            // return the values of the group as a new List of strings list
+            return new List<List<string>>(groups.Values);
+        }
+    }
+    #endregion
+    public class LeetCodeSim
+    {
+        public IList<IList<string>> GroupAnagrams(string[] strs)
+        {
+            Dictionary<string, List<string>> groups = new Dictionary<string, List<string>>();
 
             foreach (string s in strs)
             {
-                var temp = s.ToCharArray();
-                Array.Sort(temp);
+                string key = new string(s.OrderBy(x => x).ToArray());
+
+                groups.TryAdd(key, new List<string>());
+
+                groups[key].Add(s);
             }
 
-            foreach(string s in list)
-            {
-                Console.WriteLine(s);
-            }
-
-            return null;
+            return new List<IList<string>>(groups.Values);
         }
     }
+}
 
-    public static class MediumHashing
+namespace PrampPracetice
+{ 
+    public static class Pramp
     {
+        #region Cheapest Cost (N-Ary Tree)
+        public class Node
+        {
+            public int cost;
+            public Node[] children;
+            public Node parent;
+        }
 
+        public static int getCheapestCost(Node rootNode)
+        {
+            // RECURSE
+
+            // 1. check if the current node has any children.
+            int n = rootNode.children.Length; // 👻
+            // 2. if not, you are at a leaf node, return the node's cost.
+            if (n == 0) return rootNode.cost;
+            else
+            {
+                // 1. otherwise start looking for the minCost by looping through the children
+                int minCost = Int32.MaxValue;  // 🌟
+                for (int i = 0; i < n; i++)
+                {
+                    // 2. find cheapest cost from among the little children recursively
+                    int tempCost = getCheapestCost(rootNode.children[i]);
+                    // 3. if the cost returned is less than the current minimum cost, update mincost
+                    if (tempCost < minCost)
+                        minCost = tempCost;
+                }
+                // 3. return the minCost plus the cost of the node to the stack.
+                return minCost + rootNode.cost;
+            }
+        }
+        #endregion
+        public static char[] ReverseWords(char[] arr)
+        {
+            // 1. reverse all the characters in arr 
+            int start = 0;
+            for (int end=0; end<arr.Length; end++)
+            {
+                // if we've encountered a space
+                // reverse the previous word (between the indices start and end -1)
+                if (arr[end] == ' ')
+                {
+                    mirrorReverse(arr, start, end);
+                    start = end + 1;
+                }
+            }
+
+            // Reverse the last word
+            mirrorReverse(arr, start, arr.Length - 1);
+
+
+            // Reverse the entire string
+            mirrorReverse(arr, 0, arr.Length - 1);
+            
+            return arr;
+        }
+
+        public static void mirrorReverse(char[] arr, int start, int end)
+        {
+            /*🌡️*/ // store character
+            char tmp; 
+            while (start < end)
+            {
+                // swap the first and last characters
+                tmp = arr[start];
+                arr[start] = arr[end];
+                arr[end] = tmp;
+                start++;
+                end--;
+            }
+        }
     }
 }

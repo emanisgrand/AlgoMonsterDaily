@@ -1,6 +1,7 @@
 using TestHelpers;
 using Easy;
 using Medium;
+using PrampPracetice;
 
 namespace EasyTests
 {
@@ -70,7 +71,7 @@ namespace EasyTests
             int[] arr = EasyArrays.TwoSum(nums, target);
             int[] ans = EasyHashing.TwoSum(nums, target);
 
-            for (int i = 0; i < ans.Length; i++)
+            for (int i = 0; i < arr.Length; i++)
             {
                 Assert.AreEqual(expected[i], ans[i]);
                 Assert.AreEqual(expected[i], arr[i]);
@@ -85,12 +86,57 @@ namespace MediumTests
     public class ArraysAndHashing
     {
         [TestMethod]
+        [DataRow(new int[] {1,1,1,2,2,3}, 2)]
+        public void ReturnThe_K_MostFrequentElements(int[] nums, int k)
+        {
+
+            // return
+            int[] ans = new int[k];
+        }
+        #region Anagrams
+        [TestMethod]
         [DataRow("eat tea tan ate nat bat")]
         public void GroupAnagramsTogether(string data)
         {
             var strs = Helpers.SplitWords(data).ToList();
-            MediumArrays.GroupAnagrams(strs);
+            MediumHashing.GroupAnagramsSorted(strs);
+            var res = MediumHashing.GroupAnagramsCounter(strs);
         }
 
+        [TestMethod]
+        [DataRow(new string[] { "eat", "tea", "tan ", "ate", "nat", "bat" })]
+        public void GroupAnagramsTestSimulatingLeetcodeEnvironment(string[] data)
+        {
+
+            LeetCodeSim leetCodeSim = new LeetCodeSim();
+            leetCodeSim.GroupAnagrams(data);
+        }
+        #endregion
+        #region Simple OrderBy Example
+        [TestMethod]
+        [DataRow(new string[] { "coupon", "sincompoop", "ads", "yada" ,"reddick" })]
+        public void SimpleOrderByExample(string[] data)
+        {
+            var ordered = data.OrderBy(n => n);
+            foreach (string s in ordered)
+            {
+                Console.WriteLine(s);
+            }
+        }
+        #endregion
+    }
+}
+namespace PrampTests
+{
+    [TestClass]
+    public class PrampTesting
+    {
+        [TestMethod]
+        [DataRow(new char[] { 'p', 'e', 'r', 'f', 'e', 'c', 't', ' ', 'm', 'a', 'k', 'e', 's', ' ', 'p', 'r', 'a', 'c', 't', 'i', 'c', 'e', ' ' })]
+        public void SentenceReverse(char[] arr)
+        {
+            Pramp.ReverseWords(arr);
+            Console.WriteLine(arr);
+        }
     }
 }

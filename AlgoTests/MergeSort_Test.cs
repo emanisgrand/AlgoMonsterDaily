@@ -1,5 +1,6 @@
 using DataStructures;
 using Algorithms.Sort;
+using TestHelpers;
 
 namespace AlgoTests
 {
