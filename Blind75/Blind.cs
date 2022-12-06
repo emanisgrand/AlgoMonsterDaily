@@ -2,9 +2,22 @@ using TestHelpers;
 using ArraysAndHashing;
 using TwoPointers;
 using PrampPracetice;
+using SlidingWindow;
+using Graphs;
 
 namespace EasyTests
 {
+    [TestClass]
+    public class SlidingWindow
+    {
+        [TestMethod]
+        [DataRow(new int[] { 7, 1, 5, 3, 6, 4 }, 5)]
+        public void FindTheMaximumProfitToBuyAndSellStock(int[] prices, int expected)
+        {
+            Assert.AreEqual(expected, EasySlidingWindow.MaxProfit(prices));
+        }
+    }
+
     [TestClass]
     public class ArraysAndHashing
     {
@@ -96,19 +109,122 @@ namespace EasyTests
 
     }
 
-    [TestClass]
-    public class SlidingWindow
-    {
-        [TestMethod]
-        [DataRow(new int[] {7,1,5,3,6,4})]
-        public void FindTheMaximumProfitToBuyAndSellStock(int[] prices)
-        {
-            
-        }
-    }
 }
 namespace MediumTests
 {
+    [TestClass]
+    public class Graphs
+    {
+        #region Get Grid
+        static IEnumerable<char[][][]> Grid_A
+        {
+            get
+            {
+                return new List<char[][][]>
+                {
+                    new char[][][]
+                    {
+                         new char[][]
+                         {
+                         new char[] {'1', '1', '1','1', '0'},
+                         new char[] {'1', '1', '0','0', '0'},
+                         new char[] {'1', '1', '0','0', '0'},
+                         new char[] {'0', '0', '0','0', '0'},
+                         } 
+                    }
+                };
+            }
+        }
+
+        static IEnumerable<char[][][]> Grid_B
+        {
+            get
+            {
+                return new List<char[][][]>
+                {
+                    new char[][][]
+                    {
+                         new char[][]
+                         {
+                         new char[] {'1', '1', '0','0', '0'},
+                         new char[] {'1', '1', '0','0', '0'},
+                         new char[] {'0', '0', '1','0', '0'},
+                         new char[] {'0', '0', '0','1', '1'},
+                         }
+                    }
+                };
+            }
+        }
+        [TestMethod]
+        [DynamicData(nameof(Grid_A))]
+        public void EnsureGrid_A_IsInitializedCorrectly(char[][] grid)
+        {
+            Assert.AreEqual('1', grid[0][0]);
+            Assert.AreEqual('1', grid[0][1]);
+            Assert.AreEqual('1', grid[0][2]);
+            Assert.AreEqual('1', grid[0][3]);
+            Assert.AreEqual('1', grid[1][1]);
+            Assert.AreEqual('1', grid[1][0]);
+            Assert.AreEqual('1', grid[2][0]);
+            Assert.AreEqual('1', grid[2][1]);
+
+            Assert.AreEqual('0', grid[0][4]);
+            Assert.AreEqual('0', grid[1][4]);
+            Assert.AreEqual('0', grid[2][4]);
+            Assert.AreEqual('0', grid[3][4]);
+            Assert.AreEqual('0', grid[3][1]);
+            Assert.AreEqual('0', grid[3][2]);
+            Assert.AreEqual('0', grid[3][3]);
+            Assert.AreEqual('0', grid[1][2]);
+            Assert.AreEqual('0', grid[2][2]);
+            Assert.AreEqual('0', grid[2][3]);
+            Assert.AreEqual('0', grid[1][3]);
+            Assert.AreEqual('0', grid[3][0]);
+        }
+        [TestMethod]
+        [DynamicData(nameof(Grid_B))]
+        public void EnsureGrid_B_IsInitializedCorrectly(char[][] grid)
+        {
+            Assert.AreEqual('1', grid[0][0]);
+            Assert.AreEqual('1', grid[0][1]);
+            Assert.AreEqual('0', grid[0][2]);
+            Assert.AreEqual('0', grid[0][3]);
+            Assert.AreEqual('1', grid[1][1]);
+            Assert.AreEqual('1', grid[1][0]);
+            Assert.AreEqual('0', grid[2][0]);
+            Assert.AreEqual('0', grid[2][1]);
+
+            Assert.AreEqual('0', grid[0][4]);
+            Assert.AreEqual('0', grid[1][4]);
+            Assert.AreEqual('0', grid[2][4]);
+            Assert.AreEqual('1', grid[3][4]);
+            Assert.AreEqual('0', grid[3][1]);
+            Assert.AreEqual('0', grid[3][2]);
+            Assert.AreEqual('1', grid[3][3]);
+            Assert.AreEqual('0', grid[1][2]);
+            Assert.AreEqual('1', grid[2][2]);
+            Assert.AreEqual('0', grid[2][3]);
+            Assert.AreEqual('0', grid[1][3]);
+            Assert.AreEqual('0', grid[3][0]);
+        }
+        #endregion
+        [TestMethod]
+        [DynamicData(nameof(Grid_B))]
+        public void ReturnTheNumberOfIslandsInGrid_B(char[][] grid)
+        {
+            EnsureGrid_B_IsInitializedCorrectly(grid);
+            Assert.AreEqual(3, MediumGraphs.NumberOfIslandsBFS(grid));
+        }
+
+        [TestMethod]
+        [DynamicData(nameof(Grid_A))]
+        public void ReturnTheNumberOfIslandsInGrid_A(char[][] grid)
+        {
+            EnsureGrid_A_IsInitializedCorrectly(grid);
+            Assert.AreEqual(1, MediumGraphs.NumberOfIslandsBFS(grid));
+        }
+    }
+
     [TestClass]
     public class ArraysAndHashing
     {
@@ -153,6 +269,8 @@ namespace MediumTests
         #endregion
     }
 }
+
+/*
 namespace PrampTests
 {
     [TestClass]
@@ -167,3 +285,4 @@ namespace PrampTests
         }
     }
 }
+*/
