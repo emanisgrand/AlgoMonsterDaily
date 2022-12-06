@@ -1,6 +1,6 @@
 using TestHelpers;
-using Easy;
-using Medium;
+using ArraysAndHashing;
+using TwoPointers;
 using PrampPracetice;
 
 namespace EasyTests
@@ -78,6 +78,33 @@ namespace EasyTests
             }
         }
         #endregion
+    }
+
+    [TestClass]
+    public class TwoPointers
+    {
+        #region Valid Palindrome
+        [TestMethod]
+        [DataRow("A man, a plan, a canal: Panama", true)]
+        [DataRow("race a car", false)]
+        public void DetermineIfIsAValidPalindromOrNot(string s, bool expected)
+        {
+            Assert.AreEqual(expected, EasyTwoPointers.IsPalindrome(s));
+            Assert.AreEqual(expected, EasyTwoPointers.IsPalindromOptimized(s));
+        }
+        #endregion
+
+    }
+
+    [TestClass]
+    public class SlidingWindow
+    {
+        [TestMethod]
+        [DataRow(new int[] {7,1,5,3,6,4})]
+        public void FindTheMaximumProfitToBuyAndSellStock(int[] prices)
+        {
+            
+        }
     }
 }
 namespace MediumTests

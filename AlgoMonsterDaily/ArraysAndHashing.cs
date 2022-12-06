@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Text;
 
-namespace Easy
+namespace ArraysAndHashing
 {
     public static class EasyArrays
     {
@@ -183,49 +183,6 @@ namespace Easy
         #endregion
     }
 
-/*
-using System;
-
-class Solution
-{
-    public static int IndexEqualsValueSearch(int[] arr)
-    {
-      int left = 0;
-      int right = arr.Length;
-      
-      while (left <= right)
-      {
-        int mid = left + (right - left) / 2;
-        
-        if (arr[mid] == mid)
-        {
-          return mid;
-        }
-        if (arr[mid] < mid)
-        {
-          left = mid+1;
-        }else
-        {
-          right = mid -1;
-        }
-        
-      }
-      return -1;
-    }
-
-    static void Main(string[] args)
-    {
-      int[] arr = {-8, 0, 2, 5};
-      
-      Console.WriteLine(IndexEqualsValueSearch(arr));
-      
-    }
-}     
-*/
-}
-
-namespace Medium
-{
     public static class MediumHashing
     {
         #region Top K Frequent
@@ -409,5 +366,45 @@ namespace PrampPracetice
                 end--;
             }
         }
+
+        /*
+using System;
+
+class Solution
+{
+    public static int IndexEqualsValueSearch(int[] arr)
+    {
+      int left = 0;
+      int right = arr.Length;
+      
+      while (left <= right)
+      {
+        int mid = left + (right - left) / 2;
+        
+        if (arr[mid] == mid)
+        {
+          return mid;
+        }
+        if (arr[mid] < mid)
+        {
+          left = mid+1;
+        }else
+        {
+          right = mid -1;
+        }
+        
+      }
+      return -1;
+    }
+
+    static void Main(string[] args)
+    {
+      int[] arr = {-8, 0, 2, 5};
+      
+      Console.WriteLine(IndexEqualsValueSearch(arr));
+      
+    }
+}     
+*/
     }
 }
