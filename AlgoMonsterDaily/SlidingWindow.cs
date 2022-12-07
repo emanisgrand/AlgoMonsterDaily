@@ -33,4 +33,7 @@
         }
         #endregion
     }
+    public static class MediumSlidingWindow
+    {
+    }
 }

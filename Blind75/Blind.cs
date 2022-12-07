@@ -4,9 +4,21 @@ using TwoPointers;
 using PrampPracetice;
 using SlidingWindow;
 using Graphs;
+using Stacking;
 
 namespace EasyTests
 {
+    [TestClass]
+    public class StackTest
+    {
+        [TestMethod]
+        [DataRow("()", true)]
+        [DataRow("(]", false)]
+        public void DetermineValidityOfInputStringParenthesis(string s, bool expected)
+        {
+            Assert.AreEqual(expected, EasyStack.IsValid(s));
+        }
+    }
     [TestClass]
     public class SlidingWindow
     {
