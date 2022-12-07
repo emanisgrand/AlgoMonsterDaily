@@ -1,19 +1,47 @@
 using TestHelpers;
 using ArraysAndHashing;
 using TwoPointers;
-using PrampPracetice;
 using SlidingWindow;
 using Graphs;
 using Stacking;
+using DataStructures;
+using LinkedLists;
 
 namespace EasyTests
 {
+    [TestClass]
+    public class LinkedLists
+    {
+        [TestMethod]
+        [DataRow(new int[] {1,2,4}, new int[] {1,3,4})]
+        public void MergeTwoSortedLinkedLists(int[] l1Data, int[] l2Data)
+        {
+            ListNode list1 = new ListNode();
+            ListNode list2 = new ListNode();
+            foreach (int i in l1Data)
+            {
+                list1.val = i;
+                list1.next = new ListNode();
+            }
+            foreach (int i in l2Data)
+            {
+                list2.val = i;
+                list2.next = new ListNode();
+            }
+
+            EasyLinkedList.MergeSortedLists(list1, list2);
+
+        }
+    }
+
     [TestClass]
     public class StackTest
     {
         [TestMethod]
         [DataRow("()", true)]
         [DataRow("(]", false)]
+        [DataRow("()[]{}", true)]
+        [DataRow("]", false)]
         public void DetermineValidityOfInputStringParenthesis(string s, bool expected)
         {
             Assert.AreEqual(expected, EasyStack.IsValid(s));
