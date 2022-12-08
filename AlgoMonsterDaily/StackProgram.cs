@@ -3,13 +3,13 @@
     public static class EasyStack
     {
         /// <summary>
-        /// Compares string characters to closing symbol, 
+        /// Compares string characters to closing symbol
         /// </summary>
-        /// <param name="s"></param>
-        /// <returns></returns>
+        /// <param name="s">parenthetical input</param>
+        /// <returns>bool: T if all parenthesis match. F otherwise.</returns>
         public static bool IsValid(string s)
         {
-            Dictionary<char, char> symbols = new Dictionary<char, char>();/*📦*/
+            Dictionary<char, char> symbols = new Dictionary<char, char>(); /*📦*/
             symbols.Add('{', '}');
             symbols.Add('[', ']');
             symbols.Add('(', ')');
