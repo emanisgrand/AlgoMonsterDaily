@@ -65,9 +65,4 @@
             return numOfIslands;
         }
     }
-
-    public static class AdvancedGraphs
-    {
-
-    }
 }

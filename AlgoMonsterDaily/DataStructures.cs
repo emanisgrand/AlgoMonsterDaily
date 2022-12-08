@@ -1,6 +1,4 @@
-﻿using System.Collections;
-
-namespace DataStructures
+﻿namespace DataStructures
 {
     public struct Coordinate
     {
@@ -13,7 +11,6 @@ namespace DataStructures
             this.c = c;
         }
     }
-
     public class Node<T>
     {
         public T val;
@@ -29,7 +26,6 @@ namespace DataStructures
             this.next = next;
         }
     }
-
     public class ListNode
     {
         public int val;
@@ -40,7 +36,6 @@ namespace DataStructures
             this.next = next;
         }
     }
-
     public class TreeNode<T>
     {
         public T val;
@@ -58,7 +53,6 @@ namespace DataStructures
             this.right = right;
         }
     }   
-
     public class LRUCache : Dictionary<int, LinkedListNode<int[]>>
     {
         int _capacity;
@@ -109,7 +103,6 @@ namespace DataStructures
                 _list.AddFirst(node);
         }
     }
-
     public static class BinarySearchTree
     {
         private static int dfs(TreeNode<int> root)

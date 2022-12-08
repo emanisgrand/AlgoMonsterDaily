@@ -35,6 +35,7 @@
             }
         }
         #endregion
+        #region Reverse Words
         public static char[] ReverseWords(char[] arr)
         {
             // 1. reverse all the characters in arr 
@@ -59,7 +60,6 @@
 
             return arr;
         }
-
         public static void mirrorReverse(char[] arr, int start, int end)
         {
             /*🌡️*/ // store character
@@ -74,45 +74,6 @@
                 end--;
             }
         }
-
-        /*
-using System;
-
-class Solution
-{
-    public static int IndexEqualsValueSearch(int[] arr)
-    {
-      int left = 0;
-      int right = arr.Length;
-      
-      while (left <= right)
-      {
-        int mid = left + (right - left) / 2;
-        
-        if (arr[mid] == mid)
-        {
-          return mid;
-        }
-        if (arr[mid] < mid)
-        {
-          left = mid+1;
-        }else
-        {
-          right = mid -1;
-        }
-        
-      }
-      return -1;
-    }
-
-    static void Main(string[] args)
-    {
-      int[] arr = {-8, 0, 2, 5};
-      
-      Console.WriteLine(IndexEqualsValueSearch(arr));
-      
-    }
-}     
-*/
+        #endregion 
     }
 }
