@@ -6,6 +6,7 @@ using Graphs;
 using Stacking;
 using DataStructures;
 using LinkedLists;
+using System.Xml.Linq;
 
 namespace EasyTests
 {
@@ -30,7 +31,20 @@ namespace EasyTests
             }
 
             EasyLinkedList.MergeSortedLists(list1, list2);
+        }
 
+        [TestMethod]
+        [DataRow(new int[] {1,2,3,4,5})]
+        public void ReverseLinkedList(int[] data)
+        {
+            ListNode head = new ListNode();
+            foreach (int i in data)
+            {
+                head.val = i;
+                head.next = new ListNode();
+            }
+
+            EasyLinkedList.ReverseListRecursive(head);
         }
     }
 

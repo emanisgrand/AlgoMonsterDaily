@@ -47,6 +47,55 @@ namespace LinkedLists
             return dummyNode.next;
         }
 
+        public static ListNode ReverseListTwoPointer(ListNode head)
+        {
+            if (head == null || head.next == null) return head;
+            
+            ListNode left = head; /*👣 || 🐕‍🦺*/
+            ListNode middle;
+            ListNode right;
+            
+            /*
+            //0. while current pointer is not null
+            while (slow != null)
+            {
+                // 1. temporary pointer storing the next node
+                
+                // 2. fast next is looking back at slow
+                fast.next = slow;  // S<-F
+                // 3. slow is looking up at fast
+                slow = fast; // S = F
+                // 4. fast is looking forward
+                fast = fast.next; // F -> N
+
+            }
+            */
+            return null;
+        }
+
+        public static ListNode ReverseListRecursive(ListNode head)
+        {
+            // Reverse all but the head.
+
+            //0. if head is null return null
+            if (head != null) return null;
+            // new head = head
+            ListNode newHead = head;
+            // 1. if head next is not null
+            if (head.next != null)
+            {
+                // 1. newhead = reverseTheList(head.next)
+                newHead = ReverseListRecursive(head.next);
+                // 2. head.next.next = head reverses the link between next node and head.
+                head.next.next = head;
+            }
+            // 2. head.next is null. if head is first in list, set next ptr to null
+            head.next = null;
+            // return newHead
+            Console.WriteLine(newHead.val);
+            return newHead;
+        }
+
         public static void ReverseLinkedList()
         {
             
