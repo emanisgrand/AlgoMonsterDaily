@@ -2,7 +2,7 @@
 
 namespace TestHelpers
 {
-    public static class Helpers
+    public static class TestHelper
     {
         #region String
         public static List<string> SplitWords(string s)

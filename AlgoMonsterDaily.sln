@@ -5,9 +5,9 @@ VisualStudioVersion = 17.2.32526.322
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AlgoMonsterDaily", "AlgoMonsterDaily\AlgoMonsterDaily.csproj", "{B0C088E9-BBE5-4FDC-B00D-29E8B146C4C3}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AlgoTests", "AlgoTests\AlgoTests.csproj", "{6F3797F3-B8B4-4174-86DC-FB1D3703AA2E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SitePracticeTests", "AlgoTests\SitePracticeTests.csproj", "{6F3797F3-B8B4-4174-86DC-FB1D3703AA2E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blind75", "Blind75\Blind75.csproj", "{FE8D2D97-1446-4704-80D3-3CCB92DA9229}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blind75", "Blind75\Blind75.csproj", "{FE8D2D97-1446-4704-80D3-3CCB92DA9229}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

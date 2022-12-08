@@ -1,20 +1,18 @@
-﻿using DataStructures;
-
-namespace Algorithms.Search
+﻿namespace GeeksForGeeks
 {
-    public static class GFG
+    public static class Triplets
     {
         public static List<int[]> FindTriplets(int[] arr, int n)
         {
             List<int[]> list = new List<int[]>();
-            for (int i = 0; i<n-2; i++)
+            for (int i = 0; i < n - 2; i++)
             {
-                for (int j=i+1; j<n-1; j++)
+                for (int j = i + 1; j < n - 1; j++)
                 {
-                    for (int k=j+1; k<n; k++)
+                    for (int k = j + 1; k < n; k++)
                     {
                         if (arr[i] + arr[j] + arr[k] == 0)
-                        { 
+                        {
                             Console.WriteLine("{0} {1} {2}", arr[i], arr[j], arr[k]);
                             list.Add(new int[] { arr[i], arr[j], arr[k] });
                         }
@@ -24,6 +22,10 @@ namespace Algorithms.Search
             return list;
         }
     }
+}
+
+namespace AlgoMonster
+{
     public static class BinarySearch
     {
         public static int Vanilla(List<int> arr, int target)
@@ -76,9 +78,9 @@ namespace Algorithms.Search
 
             int mostWanted = -1;
 
-            while(left <= right)
+            while (left <= right)
             {
-                int mid = left + (right - left) /2;
+                int mid = left + (right - left) / 2;
 
                 if (arr[mid] >= target)
                 {
@@ -109,7 +111,8 @@ namespace Algorithms.Search
                 {
                     mostWanted = mid;
                     right = mid - 1;
-                } else if (arr[mid] < target)
+                }
+                else if (arr[mid] < target)
                 {
                     left = mid + 1;
                 }
@@ -123,7 +126,7 @@ namespace Algorithms.Search
 
         public static int SquareRoot(int n)
         {
-            if (n == 0 ) return 0;
+            if (n == 0) return 0;
 
             int left = 1;
             int right = n;
@@ -133,7 +136,7 @@ namespace Algorithms.Search
             {
                 int mid = left + (right - left) / 2;
                 if (mid == n / mid) return mid;
-                else if (mid < n/mid)
+                else if (mid < n / mid)
                 {
                     sqrt = mid;
                     left = mid + 1;
@@ -149,7 +152,7 @@ namespace Algorithms.Search
     }
     public static class DFSearch
     {
-        public static void dfs(int startIndex, List<string> res, bool[] used, List<char> path, string letters)
+        private static void dfs(int startIndex, List<string> res, bool[] used, List<char> path, string letters)
         {
             if (startIndex == used.Length)
             {
@@ -176,6 +179,6 @@ namespace Algorithms.Search
             dfs(0, res, new bool[letters.Length], new List<char>(), letters);
             return res;
         }
-        
+
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace Stacking
+﻿namespace Stack
 {
     public static class EasyStack
     {
