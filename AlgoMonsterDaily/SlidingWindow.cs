@@ -1,13 +1,13 @@
 ﻿namespace SlidingWindow
 {
     public static class EasySlidingWindow
-    {   
+    {
+        #region Best Time To Buy & Sell Stock
         /// <summary>
         /// Track operations on input values and compare maximum.
         /// </summary>
         /// <param name="prices">array of integers</param>
         /// <returns>Integer: maximum profit possible</returns>
-        #region Best Time To Buy & Sell Stock
         public static int MaxProfit(int[] prices)
         {
             int left = 0, right = 1; /*🐕‍🦺*/ /*👣*/
@@ -34,7 +34,7 @@
         /// </summary>
         /// <param name="prices">input values</param>
         /// <returns>int: highest price tracked </returns>
-        public static int OptimalMaxProfit(int[] prices)
+        public static int AltMaxProfit(int[] prices)
         {
             if (prices.Length == 0 || prices == null) ;
             

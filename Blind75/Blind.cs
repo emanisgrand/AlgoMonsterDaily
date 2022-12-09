@@ -73,7 +73,7 @@ namespace EasyTests
         public void FindTheMaximumProfitToBuyAndSellStock(int[] prices, int expected)
         {
             Assert.AreEqual(expected, EasySlidingWindow.MaxProfit(prices));
-            Assert.AreEqual(expected, EasySlidingWindow.OptimalMaxProfit(prices));
+            Assert.AreEqual(expected, EasySlidingWindow.AltMaxProfit(prices));
         }
         #endregion
     }
