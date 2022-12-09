@@ -10,34 +10,51 @@
         #region Best Time To Buy & Sell Stock
         public static int MaxProfit(int[] prices)
         {
-            // left = buy, right = sell
-            int left = 0, right = 1;
-            /*🐕‍🦺*/       /*👣*/
-            int maxProfit = 0;/*🌟*/
-
-            // 0. while stepper is < the length of the array
+            int left = 0, right = 1; /*🐕‍🦺*/ /*👣*/
+            int maxProfit = 0; /*🌟*/
+            
             while (right < prices.Length)
             {
-                // 1. check if the value at 🐕‍🦺 ptr < value at 👣 ptr
                 if (prices[left] < prices[right])
                 {
-                    // 1. track profit = prices of value at 🐕‍🦺 - value at 👣
                     int profit = prices[right] - prices[left];
-                    // 2. update maxProfit to be Max(maxProfit, and currentProfit)
-                    maxProfit = Math.Max(maxProfit, profit);
+                    maxProfit = Math.Max(profit, maxProfit);
                 }
-                // 2. else minimum sell day found. close the window
                 else
                 {
                     left = right;
                 }
-                // 3. increment 👣
                 right++;
             }
-            // maxProfit has been fully updated
             return maxProfit;
         }
+
+        public static int OptimalMaxProfit(int[] prices)
+        {
+            // 0. check if input is null or length of array is 0
+            // if so return 0
+            if (prices == null || prices.Length == 0) return 0;
+
+            // 1. contain result in new int, same length of prices array /*📦*/
+            // increased space complexity solution inbound
+            int[] res = new int[prices.Length];
+            // 2. hold the most recent value in the array, but negative tho./*👻*/
+            int diff = -prices[0];
+            // 3. loop starting from first buy day, to end prices list
+            for (int i=1; i<prices.Length; i++)
+            {
+                // 1. Set the value in the container at ptr
+                // = the Max(value in container at the ptr - 1,
+                // AND the prices value at the ptr + the negative value in the 👻)
+                // essentially this is prices[right] - prices[left]. 
+                res[i] = Math.Max(res[i - 1], prices[i] + diff);
+                // 2. Update the 👻 with the Max(👻, and the negative value of the prices where the ptr is)
+                diff = Math.Max(diff, -prices[i]);
+            }
+            // return the value of 📦 at the length of price list - 1.
+            // this will be the highest value stored in the array which reflects the max profit.
+            return res[prices.Length - 1];
+        }
         #endregion
-        // TODO: Possible optimal solution exists.
     }
 }
