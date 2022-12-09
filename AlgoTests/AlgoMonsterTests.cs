@@ -125,10 +125,10 @@ namespace CompanyOAs
             var arrA = TestHelper.SplitWords(l1);
             var arrB = TestHelper.SplitWords(l2);
 
-            Node<int> listA = TestHelper.BuildList<int>(arrA, int.Parse);
-            Node<int> listB = TestHelper.BuildList<int>(arrB, int.Parse);
+            ListNode listA = TestHelper.BuildList(arrA, int.Parse);
+            ListNode listB = TestHelper.BuildList(arrB, int.Parse);
 
-            Node<int> res = MergeSort.Merge(listA, listB);
+            ListNode res = MergeSort.Merge(listA, listB);
 
             List<string> resArr = TestHelper.FormatList<int>(res);
 
@@ -137,5 +137,3 @@ namespace CompanyOAs
         #endregion
     }
 }
-
-// in need of a pramp test section...

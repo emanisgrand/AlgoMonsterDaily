@@ -168,3 +168,36 @@ namespace EasyTests
         #endregion
     }
 }
+namespace MediumTests
+{
+    [TestClass]
+    public class GraphTests
+    {
+        static IEnumerable<int[][][]> GetArray
+        {
+            get
+            {
+                return new List<int[][][]>
+                {
+                    new int[][][]
+                    {
+                        new int[][]
+                        {
+                            new int[] {2,4},
+                            new int[] {1,3},
+                            new int[] {2,4},
+                            new int[] {1,3},
+                        }
+                    }
+                };
+            }
+        }
+
+        [TestMethod]
+        [DynamicData(nameof(GetArray))]
+        public void CloneGraph(int[][] inputArray)
+        {
+
+        }
+    }
+}
