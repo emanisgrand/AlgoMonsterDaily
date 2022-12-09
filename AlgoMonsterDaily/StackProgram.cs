@@ -42,5 +42,6 @@
             // or not in which case, it's not valid.
             return stack.Count == 0;
         }
+        // TODO: Possible optimized solution exists.
     }
 }

@@ -1,39 +1,54 @@
 ﻿namespace SlidingWindow
 {
     public static class EasySlidingWindow
-    {
+    {   
+        /// <summary>
+        /// Track operations on input values and compare maximum.
+        /// </summary>
+        /// <param name="prices">array of integers</param>
+        /// <returns>Integer: maximum profit possible</returns>
         #region Best Time To Buy & Sell Stock
         public static int MaxProfit(int[] prices)
         {
-            // left = buy, right = sell
-            int left = 0, right = 1;
-            /*🐕‍🦺*/       /*👣*/
-            int maxProfit = 0;/*🌟*/
-
-            // 0. while walker is < the length of the array
+            int left = 0, right = 1; /*🐕‍🦺*/ /*👣*/
+            int maxProfit = 0; /*🌟*/
+            
             while (right < prices.Length)
             {
-                // 1. check if the prices 🐕‍🦺 < 👣
-                if (prices[left] < prices[right])
-                {
-                    // 1. track profit: prices 🐕‍🦺 - 👣
-                    int profit = prices[right] - prices[left];
-                    // 2. update maxProfit to be Max(maxProfit, and currentProfit)
-                    maxProfit = Math.Max(maxProfit, profit);
-                }
-                // 2. else left = right
-                else
+                if (prices[right] < prices[left])
                 {
                     left = right;
                 }
-                // 3. increment 👣
+                else
+                {
+                    int profit = prices[right] - prices[left];
+                    maxProfit = Math.Max(profit, maxProfit);
+                }
                 right++;
             }
             return maxProfit;
         }
+
+        /// <summary>
+        /// Compare and track result of each price + highest negative price 
+        /// </summary>
+        /// <param name="prices">input values</param>
+        /// <returns>int: highest price tracked </returns>
+        public static int OptimalMaxProfit(int[] prices)
+        {
+            if (prices.Length == 0 || prices == null) ;
+            
+            int[] intarr = new int[prices.Length];
+            
+            int diff = -prices[0];
+            
+            for (int i=1; i<prices.Length; i++)
+            {
+                intarr[i] = Math.Max(prices[i] + diff, intarr[i - 1]);
+                diff = Math.Max(-prices[i], diff);
+            }
+            return intarr[prices.Length - 1];
+        }
         #endregion
-    }
-    public static class MediumSlidingWindow
-    {
     }
 }

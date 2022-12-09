@@ -4,7 +4,7 @@
     {
         #region Valid Palindrome
         /// <summary>
-        /// Brute Force: Iteratively compare elements at either side of input
+        /// O(n²) Space: Iteratively compare elements at either side of input
         /// </summary>
         /// <param name="s">String</param>
         /// <returns>bool: F if elements don't match. T otherwise.</returns>
