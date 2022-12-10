@@ -4,13 +4,14 @@ namespace Graphs
 {
     public static class CloneGraph
     {
-        private static Dictionary<GraphNode, GraphNode> map = new Dictionary<GraphNode, GraphNode>();/*📦*/
+        /*📦*/
 
         public static GraphNode Clone(GraphNode node)
         {
             //0. connected undirected.  deep copy (clone) - new copy same values    
             //1. if null return null;
-            
+            GraphNode errnode = new GraphNode(1);
+            return errnode;
             // run dfs node ?? 
 
             // foreach node in the map's keys
@@ -22,7 +23,7 @@ namespace Graphs
             // return map[root's] value
         }
 
-        private void dfs(GraphNode root)
+        private static void dfs(GraphNode root)
         {
             // if root is null return null
             

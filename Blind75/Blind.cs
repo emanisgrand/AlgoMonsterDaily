@@ -173,31 +173,36 @@ namespace MediumTests
     [TestClass]
     public class GraphTests
     {
-        static IEnumerable<int[][][]> GetArray
+        [TestMethod]
+        public void CloneGraph()
         {
-            get
-            {
-                return new List<int[][][]>
-                {
-                    new int[][][]
-                    {
-                        new int[][]
-                        {
-                            new int[] {2,4},
-                            new int[] {1,3},
-                            new int[] {2,4},
-                            new int[] {1,3},
-                        }
-                    }
-                };
-            }
+            GraphNode input = BuildGraph();
+
         }
 
-        [TestMethod]
-        [DynamicData(nameof(GetArray))]
-        public void CloneGraph(int[][] inputArray)
+        private GraphNode BuildGraph()
         {
-
+            GraphNode node1 = new GraphNode(1);
+            GraphNode node2 = new GraphNode(2);
+            GraphNode node3 = new GraphNode(3);
+            GraphNode node4 = new GraphNode(4);
+            List<GraphNode> list = new List<GraphNode>();
+            list.Add(node2);
+            list.Add(node4);
+            node1.neighbors = list;
+            list = new List<GraphNode>();
+            list.Add(node1);
+            list.Add(node3);
+            node2.neighbors = list;
+            list = new List<GraphNode>();
+            list.Add(node2);
+            list.Add(node4);
+            node3.neighbors = list;
+            list = new List<GraphNode>();
+            list.Add(node3);
+            list.Add(node1);
+            node4.neighbors = list;
+            return node1;
         }
     }
 }
