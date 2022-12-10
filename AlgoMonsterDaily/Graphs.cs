@@ -4,36 +4,51 @@ namespace Graphs
 {
     public static class CloneGraph
     {
-        /*📦*/
+        //connected undirected.  deep copy (clone) - new copy same values    
+        static Dictionary<GraphNode, GraphNode> map = new Dictionary<GraphNode, GraphNode>();/*📦*/
 
         public static GraphNode Clone(GraphNode node)
         {
-            //0. connected undirected.  deep copy (clone) - new copy same values    
             //1. if null return null;
-            GraphNode errnode = new GraphNode(1);
-            return errnode;
+            if (node == null) return null;
             // run dfs node ?? 
-
+            dfs(node);
             // foreach node in the map's keys
-
+            foreach(var n in map.Keys)
+            {
                 // foreach neighbor in the node's neighbors
-                    
-                    // at map[key]'s neighbors, add value of map[neighbor's] key.
-
+                foreach(var neighbor in n.neighbors)
+                {
+                    // at key map[node]'s neighbors, add value of map[neighbor's] key.
+                    map[n].neighbors.Add(map[neighbor]);
+                }
+            }
             // return map[root's] value
+            return map[node];
         }
 
         private static void dfs(GraphNode root)
         {
             // if root is null return null
-            
+            if (root == null) return;
+            // little debug line.
+            foreach (var n in root.neighbors)
+            {
+                Console.WriteLine(n.val);
+            }
             // create kvp in map(root), and a new node( root's value.)
-
+            map.Add(root, new GraphNode(root.val));
             // foreach neighbor in the root's neighbors
-
-                // if the map has key(neighbor)
-
-                    // 🔝run depth(neighbor)   
+            foreach (var neighbor in root.neighbors)
+            {
+                // if the map does not have key(neighbor)
+                if (!map.ContainsKey(neighbor))
+                {
+                    // 🔝run depth(neighbor)
+                    dfs(neighbor);
+                }
+                    
+            }
         }
     }
     public static class NumberOfIslands
