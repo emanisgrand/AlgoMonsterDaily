@@ -4,10 +4,10 @@ namespace AlgoMonster
 {
     public static class MergeSort
     {
-        public static Node<int> Merge(Node<int> Alist, Node<int> BList)
+        public static ListNode Merge(ListNode Alist, ListNode BList)
         {
-            Node<int> dummyList = new Node<int>(0);
-            Node<int> curList = dummyList;
+            ListNode dummyList = new ListNode(0);
+            ListNode curList = dummyList;
 
             while (Alist != null && BList != null)
             {
@@ -171,7 +171,7 @@ namespace AlgoMonster
     public class TwoPointers
     {
         #region Same Direction
-        public static int MiddleOfLinkedList(Node<int> head)
+        public static int MiddleOfLinkedList(ListNode head)
         {
             int slowptr = 0;
             int fastptr = 0;

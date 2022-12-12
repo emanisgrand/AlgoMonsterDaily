@@ -14,26 +14,106 @@
     public class Node<T>
     {
         public T val;
-        public Node<T> next;
 
         public Node(T val)
         {
             this.val = val;
         }
-
-        public Node(T val, Node<T> next) : this(val)
+    }
+    public class GraphNode<T>
+    {
+        public T val;
+        public List<GraphNode<T>> neighbors;
+        public GraphNode(T val)
         {
-            this.next = next;
+            this.val = val;
+        }
+        public GraphNode(T val, List<GraphNode<T>> neighbors) : this(val)
+        {
+            this.neighbors = neighbors;
+        }
+    }
+
+    public class GraphNode
+    {
+        public int val;
+        public List<GraphNode> neighbors;
+
+        public GraphNode(int _val)
+        {
+            val = _val;
+            neighbors = new List<GraphNode>();
+        }
+
+        public GraphNode(int _val, List<GraphNode> _neighbors)
+        {
+            val = _val;
+            neighbors = _neighbors;
         }
     }
     public class ListNode
     {
         public int val;
         public ListNode next;
+        public ListNode(int val)
+        {
+
+        }
         public ListNode(int val = 0, ListNode next = null)
         {
             this.val = val;
             this.next = next;
+        }
+    }
+    public class LRUCache : Dictionary<int, LinkedListNode<int[]>>
+    {
+        int _capacity;
+        LinkedList<int[]> _list = new LinkedList<int[]>();
+
+        public LRUCache(int capacity) : base(capacity)
+        {
+            _capacity = capacity;
+        }
+
+        public int Get(int key)
+        {
+            if (!this.ContainsKey(key))
+            {
+                return -1;
+            }
+            Reorder(this[key]);
+
+            return this[key].Value[1];
+        }
+
+        public void Put(int key, int value)
+        {
+            if (this.ContainsKey(key))
+            {
+                this[key].Value[1] = value;
+            }
+            else
+            {
+                if (this.Count == this._capacity)
+                {
+                    //Evict by using key
+                    this.Remove(_list.Last.Value[0]);
+                    _list.RemoveLast();
+                }
+
+                this.Add(key, new LinkedListNode<int[]>(new int[] { key, value }));
+            }
+
+            Reorder(this[key]);
+        }
+
+        public void Reorder(LinkedListNode<int[]> node)
+        {
+            if (node.Previous != null)
+                _list.Remove(node);
+
+            if (_list.First != node)
+                _list.AddFirst(node);
         }
     }
     public class TreeNode<T>
@@ -53,56 +133,6 @@
             this.right = right;
         }
     }   
-    public class LRUCache : Dictionary<int, LinkedListNode<int[]>>
-    {
-        int _capacity;
-        LinkedList<int[]> _list = new LinkedList<int[]>();
-        public LRUCache(int capacity):base(capacity)
-        {
-            _capacity = capacity;
-        }
-
-        public int Get(int key)
-        {
-            if (!this.ContainsKey(key))
-            {
-                return -1;
-            }
-            Reorder(this[key]);
-
-            return this[key].Value[1];
-        }
-
-        public void Put(int key, int value)
-        {
-            if(this.ContainsKey(key))
-            {
-                this[key].Value[1] = value;
-            }
-            else
-            {
-                if(this.Count == this._capacity)
-                {
-                    //Evict by using key
-                    this.Remove(_list.Last.Value[0]); 
-                    _list.RemoveLast(); 
-                }
-
-                this.Add(key, new LinkedListNode< int[]> (new int []{key, value} ) );
-            }
-
-            Reorder(this[key]);
-        }
-
-        public void Reorder(LinkedListNode<int[]> node)
-        {
-            if (node.Previous != null)
-                _list.Remove(node);
-
-            if(_list.First != node)
-                _list.AddFirst(node);
-        }
-    }
     public static class BinarySearchTree
     {
         private static int dfs(TreeNode<int> root)

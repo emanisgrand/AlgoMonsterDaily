@@ -3,6 +3,7 @@ using ArraysAndHashing;
 using TwoPointers;
 using SlidingWindow;
 using Stack;
+using Graphs;
 using DataStructures;
 using LinkedLists;
 
@@ -166,5 +167,51 @@ namespace EasyTests
             Assert.AreEqual(expected, EasyTwoPointers.IsPalindromOptimized(s));
         }
         #endregion
+    }
+}
+namespace MediumTests
+{
+    [TestClass]
+    public class GraphTests
+    {
+        [TestMethod]
+        public void ReturnDeepCopyOfConnectedUndirectedGraph()
+        {
+            GraphNode input = BuildGraph();
+            CloneGraph.Clone(input);
+
+        }
+
+        private GraphNode BuildGraph()
+        {
+            /* Algorithm:
+            GraphNode node1 = new GraphNode(1); 
+            List<GraphNode> list = new List<GraphNode>();
+            list.Add(node2);
+            list.Add(node4);
+            node1.neighbors = list;
+             */
+            GraphNode node1 = new GraphNode(1);
+            GraphNode node2 = new GraphNode(2);
+            GraphNode node3 = new GraphNode(3);
+            GraphNode node4 = new GraphNode(4);
+            List<GraphNode> list = new List<GraphNode>();
+            list.Add(node2);
+            list.Add(node4);
+            node1.neighbors = list;
+            list = new List<GraphNode>();
+            list.Add(node1);
+            list.Add(node3);
+            node2.neighbors = list;
+            list = new List<GraphNode>();
+            list.Add(node2);
+            list.Add(node4);
+            node3.neighbors = list;
+            list = new List<GraphNode>();
+            list.Add(node3);
+            list.Add(node1);
+            node4.neighbors = list;
+            return node1;
+        }
     }
 }

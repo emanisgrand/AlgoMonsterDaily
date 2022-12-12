@@ -10,7 +10,7 @@ namespace TestHelpers
             return string.IsNullOrEmpty(s) ? new List<string>() : s.Trim().Split(' ').ToList();
         }
 
-        public static List<string> FormatList<T>(Node<T> node)
+        public static List<string> FormatList<T>(ListNode node)
         {
             List<string> strList = new List<string>();
             while (node != null)
@@ -22,13 +22,15 @@ namespace TestHelpers
         }
         #endregion
         #region Linked List 
-        public static Node<T> BuildList<T>(List<string> strs, Func<string, T> f)
+        public static ListNode BuildList<T>(List<string> strs, Func<string, T> f)
         {
-            Node<T> node = null;
+            ListNode node = null;
+
             for (int i = strs.Count -1; i >= 0; i--)
             {
-                node = new Node<T>(f(strs[i]), node);
+                node = new ListNode(int.Parse(strs[i]), node.next);
             }
+
             return node;
         }
         #endregion
