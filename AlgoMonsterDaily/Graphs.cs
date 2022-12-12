@@ -2,22 +2,60 @@
 
 namespace Graphs
 {
-    public static class CloneGraphBFS
-    {
+    public static class BFSClone
+    { // BLIND: ❌ ✅✅
+        /// <summary>
+        /// Enqueue neighbors of input node to run BFS and make copies.
+        /// </summary>
+        /// <param name="input">Graph node with neighbors list</param>
+        /// <returns>Deep copy of input graph</returns>
+        public static GraphNode DeepCopy(GraphNode input)
+        {
+            if (input == null) return input;
 
+            Queue<GraphNode> q = new Queue<GraphNode>();
+            Dictionary<GraphNode, GraphNode> map = new Dictionary<GraphNode, GraphNode>();
+
+            q.Enqueue(input);
+            map.Add(input, new GraphNode(input.val));
+
+            while (q.Count > 0)
+            {
+                GraphNode curNode = q.Dequeue();
+                foreach(var neibr in curNode.neighbors)
+                {
+                    if (!map.ContainsKey(neibr))
+                    {
+                        map.Add(neibr, new GraphNode(neibr.val));
+                        q.Enqueue(neibr);
+                    }
+
+                    map[curNode].neighbors.Add(map[neibr]);
+                }
+            }
+            // correct output 
+            foreach(var node in map.Values)
+            {
+                foreach (var neibr in node.neighbors)
+                {
+                    Console.WriteLine(neibr.val);
+                }
+            }
+
+            return map[input];
+        }
     }
 
-    public static class CloneGraphDFS
+    public static class DFSClone
     {
         // BLIND: ✅ ✅ ✅
-
         static Dictionary<GraphNode, GraphNode> map = new Dictionary<GraphNode, GraphNode>();/*📦*/
         /// <summary>
         /// Calls dfs for global map to generate deep copy of undirected graph.
         /// </summary>
         /// <param name="input">Undirected graph node with neighbors</param>
         /// <returns>Clone of input</returns>
-        public static GraphNode Clone(GraphNode input)
+        public static GraphNode DeepCopy(GraphNode input)
         {
             if (input == null) return null;
 
@@ -57,7 +95,6 @@ namespace Graphs
             {
                 if (!map.ContainsKey(neighbor)) dfs(neighbor);
             }
-            
         }
     }
 

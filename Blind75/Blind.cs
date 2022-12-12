@@ -175,11 +175,17 @@ namespace MediumTests
     public class GraphTests
     {
         [TestMethod]
-        public void ReturnDeepCopyOfConnectedUndirectedGraph()
+        public void DFSNodeToReturnDeepCopyOfConnectedUndirectedGraph()
         {
             GraphNode input = BuildGraph();
-            CloneGraph.Clone(input);
+            DFSClone.DeepCopy(input);
+        }
 
+        [TestMethod]
+        public void BFSNodeToReturnDeepCopyOfConnectedUndirectedGraph()
+        {
+            GraphNode input = BuildGraph();
+            BFSClone.DeepCopy(input);
         }
 
         private GraphNode BuildGraph()
