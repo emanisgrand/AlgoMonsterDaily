@@ -174,6 +174,16 @@ namespace MediumTests
     [TestClass]
     public class GraphTests
     {
+        /// <summary>
+        /// Requires IEnumerable data
+        /// Dynamic Data attribute
+        /// </summary>
+        [TestMethod]
+        public void ReturnNumberOfIslands()
+        {
+
+        }
+
         [TestMethod]
         public void DFSNodeToReturnDeepCopyOfConnectedUndirectedGraph()
         {
