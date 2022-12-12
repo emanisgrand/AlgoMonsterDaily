@@ -2,7 +2,12 @@
 
 namespace Graphs
 {
-    public static class CloneGraph
+    public static class CloneGraphBFS
+    {
+
+    }
+
+    public static class CloneGraphDFS
     {
         // BLIND: ✅ ✅ ✅
 
