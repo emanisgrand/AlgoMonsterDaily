@@ -4,53 +4,58 @@ namespace Graphs
 {
     public static class CloneGraph
     {
-        //connected undirected.  deep copy (clone) - new copy same values    
-        static Dictionary<GraphNode, GraphNode> map = new Dictionary<GraphNode, GraphNode>();/*📦*/
+        // BLIND: ✅ ✅ ✅
 
-        public static GraphNode Clone(GraphNode node)
+        static Dictionary<GraphNode, GraphNode> map = new Dictionary<GraphNode, GraphNode>();/*📦*/
+        /// <summary>
+        /// Calls dfs for global map to generate deep copy of undirected graph.
+        /// </summary>
+        /// <param name="input">Undirected graph node with neighbors</param>
+        /// <returns>Clone of input</returns>
+        public static GraphNode Clone(GraphNode input)
         {
-            //1. if null return null;
-            if (node == null) return null;
-            // run dfs node ?? 
-            dfs(node);
-            // foreach node in the map's keys
-            foreach(var n in map.Keys)
+            if (input == null) return null;
+
+            dfs(input);
+
+            foreach (var node in map.Keys)
             {
-                // foreach neighbor in the node's neighbors
-                foreach(var neighbor in n.neighbors)
+                foreach (var neighbor in node.neighbors)
                 {
-                    // at key map[node]'s neighbors, add value of map[neighbor's] key.
-                    map[n].neighbors.Add(map[neighbor]);
+                    map[node].neighbors.Add(map[neighbor]);
                 }
             }
-            // return map[root's] value
-            return map[node];
+
+            // the correct output.
+            foreach (var node in map.Keys)
+            {
+                foreach (var neib in node.neighbors)
+                {
+                    Console.WriteLine(neib.val);
+                }
+            }
+
+            return map[input];
         }
 
-        private static void dfs(GraphNode root)
+        /// <summary>
+        /// Creates keys in global map with empty values.
+        /// </summary>
+        /// <param name="input"></param>
+        private static void dfs(GraphNode input)
         {
-            // if root is null return null
-            if (root == null) return;
-            // little debug line.
-            foreach (var n in root.neighbors)
+            if (input == null) return;
+
+            map.Add(input, new GraphNode(input.val));
+
+            foreach(var neighbor in input.neighbors)
             {
-                Console.WriteLine(n.val);
+                if (!map.ContainsKey(neighbor)) dfs(neighbor);
             }
-            // create kvp in map(root), and a new node( root's value.)
-            map.Add(root, new GraphNode(root.val));
-            // foreach neighbor in the root's neighbors
-            foreach (var neighbor in root.neighbors)
-            {
-                // if the map does not have key(neighbor)
-                if (!map.ContainsKey(neighbor))
-                {
-                    // 🔝run depth(neighbor)
-                    dfs(neighbor);
-                }
-                    
-            }
+            
         }
     }
+
     public static class NumberOfIslands
     {
         public static int NumberOfIslandsBFS(char[][] grid)
