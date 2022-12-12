@@ -180,14 +180,12 @@ namespace MediumTests
             GraphNode input = BuildGraph();
             DFSClone.DeepCopy(input);
         }
-
         [TestMethod]
         public void BFSNodeToReturnDeepCopyOfConnectedUndirectedGraph()
         {
             GraphNode input = BuildGraph();
             BFSClone.DeepCopy(input);
         }
-
         private GraphNode BuildGraph()
         {
             /* Algorithm:
