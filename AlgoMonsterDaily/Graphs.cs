@@ -99,7 +99,7 @@ namespace Graphs
 
     public static class NumberOfIslands
     {
-        public static int NumberOfIslandsBFS(char[][] grid)
+        public static int BFS(char[][] grid)
         {
             int numOfIslands = 0;/*🌟*/
 
