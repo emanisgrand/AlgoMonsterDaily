@@ -174,14 +174,53 @@ namespace MediumTests
     [TestClass]
     public class GraphTests
     {
-        /// <summary>
-        /// Requires IEnumerable data
-        /// Dynamic Data attribute
-        /// </summary>
-        [TestMethod]
-        public void ReturnNumberOfIslands()
+        static IEnumerable<int[][][]> GetGrid1
         {
+            get
+            {
+                return new List<int[][][]>
+                {
+                    new int [][][]
+                    {
+                        new int[][]
+                        {
+                            new int[]{1, 1, 1, 1, 0},
+                            new int[]{1, 1, 0, 1, 0},
+                            new int[]{1, 1, 0, 0, 0},
+                            new int[]{0, 0, 0, 0, 0}
+                        }
+                    }
+                };
+            }
+        }
 
+        [TestMethod]
+        [DynamicData(nameof(GetGrid1))]
+        public void ValidateGrid(int[][] input)
+        {
+            Assert.AreEqual(1, input[0][0]);
+            Assert.AreEqual(1, input[0][1]);
+            Assert.AreEqual(1, input[0][2]);
+            Assert.AreEqual(1, input[0][3]);
+            Assert.AreEqual(0, input[0][4]);
+
+            Assert.AreEqual(1, input[1][0]);
+            Assert.AreEqual(1, input[1][1]);
+            Assert.AreEqual(0, input[1][2]);
+            Assert.AreEqual(1, input[1][3]);
+            Assert.AreEqual(0, input[1][4]);
+
+            Assert.AreEqual(1, input[2][0]);
+            Assert.AreEqual(1, input[2][1]);
+            Assert.AreEqual(0, input[2][2]);
+            Assert.AreEqual(0, input[2][3]);
+            Assert.AreEqual(0, input[2][4]);
+
+            Assert.AreEqual(0, input[3][0]);
+            Assert.AreEqual(0, input[3][1]);
+            Assert.AreEqual(0, input[3][2]);
+            Assert.AreEqual(0, input[3][3]);
+            Assert.AreEqual(0, input[3][4]);                    
         }
 
         [TestMethod]
