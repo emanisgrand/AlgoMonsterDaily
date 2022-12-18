@@ -174,20 +174,131 @@ namespace MediumTests
     [TestClass]
     public class GraphTests
     {
+        #region Dynamic Grid Data Initialization & Validation
+        static IEnumerable<char[][][]> GetGridA
+        {
+            get
+            {
+                return new List<char[][][]>
+                {
+                    new char [][][]
+                    {
+                        new char[][]
+                        {
+                            new char[]{'1', '1', '1', '1', '0'},
+                            new char[]{'1', '1', '0', '1', '0'},
+                            new char[]{'1', '1', '0', '0', '0'},
+                            new char[]{'0', '0', '0', '0', '0'}
+                        }
+                    }
+                };
+            }
+        }
+        [TestMethod]
+        [DynamicData(nameof(GetGridA))]
+        public void Grid_A_ValidationCheck(char[][] input)
+        {
+            Assert.AreEqual('1', input[0][0]);
+            Assert.AreEqual('1', input[0][1]);
+            Assert.AreEqual('1', input[0][2]);
+            Assert.AreEqual('1', input[0][3]);
+            Assert.AreEqual('0', input[0][4]);
+
+            Assert.AreEqual('1', input[1][0]);
+            Assert.AreEqual('1', input[1][1]);
+            Assert.AreEqual('0', input[1][2]);
+            Assert.AreEqual('1', input[1][3]);
+            Assert.AreEqual('0', input[1][4]);
+
+            Assert.AreEqual('1', input[2][0]);
+            Assert.AreEqual('1', input[2][1]);
+            Assert.AreEqual('0', input[2][2]);
+            Assert.AreEqual('0', input[2][3]);
+            Assert.AreEqual('0', input[2][4]);
+
+            Assert.AreEqual('0', input[3][0]);
+            Assert.AreEqual('0', input[3][1]);
+            Assert.AreEqual('0', input[3][2]);
+            Assert.AreEqual('0', input[3][3]);
+            Assert.AreEqual('0', input[3][4]);
+        }
+        static IEnumerable<char[][][]> GetGridB
+        {
+            get
+            {
+                return new List<char[][][]>
+                {
+                    new char [][][]
+                    {
+                        new char[][]
+                        {
+                            new char[]{'1', '1', '0', '0', '0'},
+                            new char[]{'1', '1', '0', '0', '0'},
+                            new char[]{'0', '0', '1', '0', '0'},
+                            new char[]{'0', '0', '0', '1', '1'}
+                        }
+                    }
+                };
+            }
+        }
+        [TestMethod]
+        [DynamicData(nameof(GetGridB))]
+        public void Grid_B_ValidationCheck(char[][] input)
+        {
+            Assert.AreEqual('1', input[0][0]);
+            Assert.AreEqual('1', input[0][1]);
+            Assert.AreEqual('0', input[0][2]);
+            Assert.AreEqual('0', input[0][3]);
+            Assert.AreEqual('0', input[0][4]);
+
+            Assert.AreEqual('1', input[1][0]);
+            Assert.AreEqual('1', input[1][1]);
+            Assert.AreEqual('0', input[1][2]);
+            Assert.AreEqual('0', input[1][3]);
+            Assert.AreEqual('0', input[1][4]);
+
+            Assert.AreEqual('0', input[2][0]);
+            Assert.AreEqual('0', input[2][1]);
+            Assert.AreEqual('1', input[2][2]);
+            Assert.AreEqual('0', input[2][3]);
+            Assert.AreEqual('0', input[2][4]);
+
+            Assert.AreEqual('0', input[3][0]);
+            Assert.AreEqual('0', input[3][1]);
+            Assert.AreEqual('0', input[3][2]);
+            Assert.AreEqual('1', input[3][3]);
+            Assert.AreEqual('1', input[3][4]);
+        }
+        #endregion
+
+        [TestMethod]
+        [DynamicData(nameof(GetGridA))]
+        public void Grid_A_NumberOfIslands(char[][] grid)
+        {
+            Grid_A_ValidationCheck(grid);
+            Assert.AreEqual(1, NumberOfIslands.BFS(grid));
+        }
+        [TestMethod]
+        [DynamicData(nameof(GetGridB))]
+        public void Grid_B_NumberOfIslands(char[][] grid)
+        {
+            Grid_B_ValidationCheck(grid);
+            Assert.AreEqual(3, NumberOfIslands.BFS(grid));
+        }
+      
+
         [TestMethod]
         public void DFSNodeToReturnDeepCopyOfConnectedUndirectedGraph()
         {
             GraphNode input = BuildGraph();
             DFSClone.DeepCopy(input);
         }
-
         [TestMethod]
         public void BFSNodeToReturnDeepCopyOfConnectedUndirectedGraph()
         {
             GraphNode input = BuildGraph();
             BFSClone.DeepCopy(input);
         }
-
         private GraphNode BuildGraph()
         {
             /* Algorithm:
