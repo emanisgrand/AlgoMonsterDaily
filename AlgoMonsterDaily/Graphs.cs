@@ -139,8 +139,6 @@ namespace Graphs
                     }
                 }
             }
-
-            // return the number of islands.
             return islands;
         }
     }
