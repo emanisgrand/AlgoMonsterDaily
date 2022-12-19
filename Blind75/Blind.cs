@@ -171,6 +171,17 @@ namespace EasyTests
 }
 namespace MediumTests
 {
+
+    [TestClass]
+    public class BinarySearch
+    {
+        [TestMethod]
+        [DataRow(new int[] {1,2,3,5,6})]
+        public void SearchInRotateSortedArray(int[] arr)
+        {
+
+        }
+    }
     [TestClass]
     public class GraphTests
     {
