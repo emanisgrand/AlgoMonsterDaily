@@ -6,6 +6,7 @@ using Stack;
 using Graphs;
 using DataStructures;
 using LinkedLists;
+using BinarySearching;
 
 namespace EasyTests
 {
@@ -173,13 +174,13 @@ namespace MediumTests
 {
 
     [TestClass]
-    public class BinarySearch
+    public class BinarySearchTests
     {
         [TestMethod]
-        [DataRow(new int[] {1,2,3,5,6})]
-        public void SearchInRotateSortedArray(int[] arr)
+        [DataRow(new int[] {1,2,3,5,6}, 0, 4)]
+        public void SearchInRotateSortedArray(int[] nums, int target, int expected)
         {
-
+            Assert.AreEqual(expected, BinarySearch.Rotated(nums, target));
         }
     }
     [TestClass]
