@@ -1,58 +1,61 @@
-﻿namespace BinarySearching
+﻿using System.Data;
+
+namespace Binary
 {
-    public static class BinarySearch
+    public static class Search
     {
         /// <summary>
-        /// TODO: Write summary
+        /// Compare target with left and right values of pivot
         /// </summary>
         /// <param name="nums">possibly rotated array of integers</param>
         /// <param name="target">value to determine </param>
         /// <returns></returns>
         public static int Rotated(int[] nums, int target)
         {
-            // 0. initialize pointers
             int left = 0, right = nums.Length - 1;
-
-            // 1. while left <= right because in this case left/right can be ==
-            while (left < right)
+            while (left <= right)
             {
-                // 1. initialize mid
-                int mid = (left + right) / 2;
+                int mid = left + (right - left) / 2;
+                if (nums[mid] == target) return mid;
 
-                // 2. return mid if it's target
-                if (nums[mid] == target) return mid; //✅
-                // 3. check if on left side of sorted array
-                else if (nums[mid] >= nums[left])
+                if (nums[left] <= nums[mid])
                 {
-                    // 1. condition for erasing left
                     if (nums[left] <= target && target <= nums[mid])
                     {
-                        // 1. update right
                         right = mid - 1;
                     }
                     else
                     {
-                        // 2. update left
                         left = mid + 1;
                     }
-                }
-                else //4. right sorted portion
+                } 
+                else
                 {
-                    // 1. condition for erasing unused portion
                     if (nums[mid] <= target && target <= nums[right])
                     {
-                        // 1. update left
-                        left = mid + 1; 
-                    }
+                        left = mid + 1;
+                    } 
                     else
                     {
-                        // 2. update right
                         right = mid - 1;
                     }
                 }
             }
-            // return -1 
             return -1;
+        }
+        public static int RotateBruteForce(int[] nums, int target)
+        {
+            int ans = -1;
+            int counter = 0;
+            foreach(int num in nums)
+            {
+                if (num == target)
+                {
+                    ans = counter;
+                }
+                counter++;
+            }
+            return ans;
         }
     }
 }
