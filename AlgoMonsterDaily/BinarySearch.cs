@@ -34,7 +34,6 @@ namespace Binary
 
             return res;
         }
-
         /// <summary>
         /// Compare target with left and right values of pivot
         /// </summary>
