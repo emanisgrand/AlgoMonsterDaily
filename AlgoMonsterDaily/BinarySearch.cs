@@ -6,6 +6,41 @@ namespace Binary
     {
         public static int FindMin(int[] nums)
         {
+            // something to store the result
+            int res = nums[0];
+            // left and right pointers
+            int left = 0, right = nums.Length - 1;
+            
+            // while left is <= right
+            while (left <= right)
+            {
+                // check both ends of the array to see if it's in sorted order.
+                // if it is, return the minimum of current result value and 
+                // value that is on the leftmost side of the array
+                if (nums[left] < nums[right]) return Math.Min(res, nums[left]);
+                
+                // compute the mid pointer now that we'll be doing binary search
+                int mid = (left + right) / 2;
+
+                // update result variable with the minimum between current result and current value at mid
+                // it could be the pivot point and thus the smallest value.
+                res = Math.Min(res, nums[mid]);
+
+                // is mid value part of left sorted portion?
+                if (nums[mid] >= nums[left])
+                // then update left so we can scan right side
+                {
+                    left = mid + 1;
+                }
+                // else
+                else
+                {
+                    // update right so we can scan left side
+                    right = mid - 1;
+                }
+                // return result.
+            }
+            
             return 0;
         }
 

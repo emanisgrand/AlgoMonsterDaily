@@ -176,9 +176,12 @@ namespace MediumTests
     public class BinarySearchTests
     {
         [TestMethod]
+        [DataRow(new int[] {3,4,5,1,2}, 1)]
+        [DataRow(new int[] { 4,5,6,7,0,1,2}, 0)]
+        [DataRow(new int[] { 11,13,15,17}, 11)]
         public void FindMinimumInRotatedSortedArray(int[] nums, int expected)
         {
-
+            Assert.AreEqual(expected, RotateSorted.FindMin(nums));
         }
 
         #region Search in Rotated Sorted Array
