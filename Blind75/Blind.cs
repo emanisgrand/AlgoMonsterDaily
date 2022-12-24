@@ -176,6 +176,13 @@ namespace MediumTests
     public class BinarySearchTests
     {
         [TestMethod]
+        public void FindMinimumInRotatedSortedArray(int[] nums, int expected)
+        {
+
+        }
+
+        #region Search in Rotated Sorted Array
+        [TestMethod]
         [DataRow(new int[] {4,5,6,7,0,1,2}, 0,  4)]
         [DataRow(new int[] {4,5,6,7,0,1,2}, 3, -1)]
         [DataRow(new int[] {1}, 0, -1)]
@@ -185,6 +192,7 @@ namespace MediumTests
             Assert.AreEqual(expected, RotateSorted.Search(nums, target));
             Assert.AreEqual(expected, RotateSorted.BruteForceSearch(nums, target));
         }
+        #endregion
     }
     [TestClass]
     public class GraphTests
