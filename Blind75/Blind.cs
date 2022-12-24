@@ -175,6 +175,7 @@ namespace MediumTests
     [TestClass]
     public class BinarySearchTests
     {
+        #region Find Minimum in Rotated Sorted Array
         [TestMethod]
         [DataRow(new int[] {3,4,5,1,2}, 1)]
         [DataRow(new int[] { 4,5,6,7,0,1,2}, 0)]
@@ -183,7 +184,7 @@ namespace MediumTests
         {
             Assert.AreEqual(expected, RotateSorted.FindMin(nums));
         }
-
+        #endregion
         #region Search in Rotated Sorted Array
         [TestMethod]
         [DataRow(new int[] {4,5,6,7,0,1,2}, 0,  4)]
@@ -296,7 +297,7 @@ namespace MediumTests
             Assert.AreEqual('1', input[3][4]);
         }
         #endregion
-
+        #region Determine Number of Islands for Grid A
         [TestMethod]
         [DynamicData(nameof(GetGridA))]
         public void Grid_A_NumberOfIslands(char[][] grid)
@@ -304,6 +305,8 @@ namespace MediumTests
             Grid_A_ValidationCheck(grid);
             Assert.AreEqual(1, NumberOfIslands.BFS(grid));
         }
+        #endregion
+        #region Determine Number of Islands for Grid B
         [TestMethod]
         [DynamicData(nameof(GetGridB))]
         public void Grid_B_NumberOfIslands(char[][] grid)
@@ -311,20 +314,24 @@ namespace MediumTests
             Grid_B_ValidationCheck(grid);
             Assert.AreEqual(3, NumberOfIslands.BFS(grid));
         }
-      
-
+        #endregion
+        #region Create a Deep Copy using Depth First Search
         [TestMethod]
         public void DFSNodeToReturnDeepCopyOfConnectedUndirectedGraph()
         {
             GraphNode input = BuildGraph();
             DFSClone.DeepCopy(input);
         }
+        #endregion
+        #region Create a Deep Copy using Breadth First Search
         [TestMethod]
         public void BFSNodeToReturnDeepCopyOfConnectedUndirectedGraph()
         {
             GraphNode input = BuildGraph();
             BFSClone.DeepCopy(input);
         }
+        #endregion
+        #region Helper function used to Build a Graph 
         private GraphNode BuildGraph()
         {
             /* Algorithm:
@@ -356,5 +363,6 @@ namespace MediumTests
             node4.neighbors = list;
             return node1;
         }
+        #endregion
     }
 }
