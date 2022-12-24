@@ -2,15 +2,20 @@
 
 namespace Binary
 {
-    public static class Search
+    public static class RotateSorted
     {
+        public static int FindMin(int[] nums)
+        {
+            return 0;
+        }
+
         /// <summary>
         /// Compare target with left and right values of pivot
         /// </summary>
         /// <param name="nums">possibly rotated array of integers</param>
         /// <param name="target">value to determine </param>
         /// <returns></returns>
-        public static int Rotated(int[] nums, int target)
+        public static int Search(int[] nums, int target)
         {
             int left = 0, right = nums.Length - 1;
             while (left <= right)
@@ -43,7 +48,7 @@ namespace Binary
             }
             return -1;
         }
-        public static int RotateBruteForce(int[] nums, int target)
+        public static int BruteForceSearch(int[] nums, int target)
         {
             int ans = -1;
             int counter = 0;

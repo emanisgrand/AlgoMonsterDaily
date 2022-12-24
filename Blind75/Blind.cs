@@ -172,7 +172,6 @@ namespace EasyTests
 }
 namespace MediumTests
 {
-
     [TestClass]
     public class BinarySearchTests
     {
@@ -183,8 +182,8 @@ namespace MediumTests
         [DataRow(new int[] {1,3}, 3, 1)]
         public void SearchInRotateSortedArray(int[] nums, int target, int expected)
         {
-            Assert.AreEqual(expected, Search.Rotated(nums, target));
-            Assert.AreEqual(expected, Search.RotateBruteForce(nums, target));
+            Assert.AreEqual(expected, RotateSorted.Search(nums, target));
+            Assert.AreEqual(expected, RotateSorted.BruteForceSearch(nums, target));
         }
     }
     [TestClass]
