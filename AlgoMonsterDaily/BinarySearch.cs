@@ -4,11 +4,36 @@ namespace Binary
 {
     public static class RotateSorted
     {
+        /// <summary>
+        /// Determine potential pivot point of values then compare to find minimum
+        /// </summary>
+        /// <param name="nums">Integer array, possibly rotated.</param>
+        /// <returns>Int: minimum value in rotated array</returns>
         public static int FindMin(int[] nums)
         {
-            return 0;
-        }
+            int res = nums[0];
+            int left = 0, right = nums.Length - 1;
 
+            while (left <= right)
+            {
+                if (nums[left] < nums[right]) return Math.Min(nums[left], res);
+
+                int mid = (left + right) / 2;
+
+                res = Math.Min(nums[mid], res);
+
+                if (nums[left] <= nums[mid])
+                {
+                    left = mid + 1; 
+                }
+                else
+                {
+                    right = mid - 1;
+                }
+            }
+
+            return res;
+        }
         /// <summary>
         /// Compare target with left and right values of pivot
         /// </summary>
