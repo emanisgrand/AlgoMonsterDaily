@@ -1,4 +1,6 @@
-﻿namespace DataStructures
+﻿using System.Security.Cryptography.X509Certificates;
+
+namespace DataStructures
 {
     public struct Coordinate
     {
@@ -132,7 +134,8 @@
             this.left = left;
             this.right = right;
         }
-    }   
+    }
+
     public static class BinarySearchTree
     {
         private static int dfs(TreeNode<int> root)

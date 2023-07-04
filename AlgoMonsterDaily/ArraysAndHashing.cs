@@ -146,7 +146,7 @@ namespace ArraysAndHashing
         #endregion
         #region Contains Duplicates
         /// <summary>
-        /// Create a set and check for duplicates in that set in O(n) time and space.
+        /// Populate a set with input values and check for duplicates in that set in O(n) time and space.
         /// </summary>
         /// <param name="arr">An unsorted array of values</param>
         /// <returns>True if the array value has been added to the set. False otherwise.</returns>

@@ -2,6 +2,19 @@ using AlgoMonster;
 using TestHelpers;
 using System.Data;
 using DataStructures;
+
+namespace DynamicProgramming{
+    [TestClass]
+    public class DynamicProgrammingTests{
+        [TestMethod]
+        [DataRow(12, 233)]
+        public void ClimbStairsTest(int data, int expected){
+            AlgoMonsterDaily.DynamicProgrammingClass dpClass = new AlgoMonsterDaily.DynamicProgrammingClass();
+            int resultOf = dpClass.ClimbingStairs(data);
+            Assert.AreEqual(resultOf, expected);
+        }
+    }
+}
 namespace BinarySearch
 {
     [TestClass]

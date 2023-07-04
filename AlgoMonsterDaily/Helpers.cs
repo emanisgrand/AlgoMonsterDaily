@@ -44,6 +44,16 @@ namespace TestHelpers
             TreeNode<T> right = BuildTree<T>(strs, ref pos, f);
             return new TreeNode<T>(f(val), left, right);
         }
+
+        public static TreeNode<T> BuildNTree<T>(List<string> strs, ref int pos, Func<string, T> f)
+        {
+            string val = strs[pos];
+            pos++;
+            if (val == "x") return null;
+            TreeNode<T> left = BuildNTree<T>(strs, ref pos, f);
+            TreeNode<T> right = BuildNTree<T>(strs, ref pos, f);
+            return new TreeNode<T>(f(val), left, right);
+        }
         #endregion
     }
 }
