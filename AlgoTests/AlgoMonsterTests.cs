@@ -8,6 +8,17 @@ namespace DynamicProgramming{
     public class DynamicProgrammingTests{
         [TestMethod]
         [DataRow(12, 233)]
+        public void MinCostCliminbStairsTest(int n, int expected){
+            AlgoMonsterDaily.DynamicProgrammingClass dpClass = new AlgoMonsterDaily.DynamicProgrammingClass();
+            int[] dpList = new int[n+1]; 
+            
+            int resultOf = dpClass.MinCostClimbingStairs(dpList);
+
+            Assert.AreEqual(expected, resultOf);
+        }
+    
+        [TestMethod]
+        [DataRow(12, 233)]
         public void ClimbStairsTest(int data, int expected){
             AlgoMonsterDaily.DynamicProgrammingClass dpClass = new AlgoMonsterDaily.DynamicProgrammingClass();
             int resultOf = dpClass.ClimbingStairs(data);
