@@ -5,31 +5,33 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace AlgoMonsterDaily {
+		public enum Optimization { Runtime, Memory }
+
 		public class DynamicProgrammingClass {
-				public enum Optimization{ None, Runtime, Memory}
-				
-				public int HouseRobber(List<int> nums, Optimization optmz = Optimization.None){
+				public int AdvRobber(List<int> nums){
+						return Math.Max(nums[0], Math.Max(
+								HouseRobber(nums), 
+								HouseRobber(nums)
+						));
+				}
+
+				public int HouseRobber(List<int> nums, int start, int end, Optimization optmz = Optimization.Runtime){
+						
 						int n = nums.Count;
 
 						switch (optmz){
-							case Optimization.None:
-								break;
-								
+
 							case Optimization.Runtime:
-								if (n == 0) return 0;
-								if (n == 1) return nums[0];
+								int rob1 = 0, rob2 = 0;
 
-								List<int> dp = new List<int>(n);
-
-								dp[0] = nums[0];
-								dp[1] = Math.Max(nums[0], nums[1]);
-
-								for (int i = 2; i <= n; i++) {
-										dp[i] = Math.Max(dp[i - 1], dp[i - 2] + nums[i]);
+								for(int i=start; i< end; i++){
+										int temp = Math.Max(nums[i] + rob1, rob2);
+										rob1 = rob2;
+										rob2 = temp;
 								}
 
-								return dp[n - 1];		
-							
+								return rob2;
+
 							case Optimization.Memory:				
 								if (n>1){
 										var max0 = nums[0];
@@ -46,9 +48,6 @@ namespace AlgoMonsterDaily {
 								} else {
 										return 0;
 								}				
-								
-								default:
-								break;
 						}
 						return 0;
 				}

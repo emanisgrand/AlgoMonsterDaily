@@ -2,24 +2,32 @@ using AlgoMonster;
 using TestHelpers;
 using System.Data;
 using DataStructures;
+using System.Security.Cryptography.X509Certificates;
+using AlgoMonsterDaily;
 
 namespace DynamicProgramming{
+
     [TestClass]
     public class DynamicProgrammingTests{
         [TestMethod]
         [DataRow("1 2 3 1", 4)]
 				[DataRow("7 4 9 5 6 2 1", 23)]
 				public void HouseRobberTest(string data, int expected){
-						AlgoMonsterDaily.DynamicProgrammingClass dpClass = new AlgoMonsterDaily.DynamicProgrammingClass();
-						List<int> nums= TestHelper.SplitWords(data).Select(int.Parse).ToList();
-            int resultOf = dpClass.HouseRobber(nums);
-            Assert.AreEqual(resultOf, expected);
-        }
+						
+            AlgoMonsterDaily.DynamicProgrammingClass dpClass = new AlgoMonsterDaily.DynamicProgrammingClass();
+
+            List<int> nums= TestHelper.SplitWords(data).Select(int.Parse).ToList();
+            
+						int resultOf = dpClass.AdvRobber(nums);
+
+						Assert.AreEqual(resultOf, expected);
+				}
 
         [TestMethod]
         [DataRow(12, 233)]
         public void MinCostCliminbStairsTest(int n, int expected){
             AlgoMonsterDaily.DynamicProgrammingClass dpClass = new AlgoMonsterDaily.DynamicProgrammingClass();
+            
             int[] dpList = new int[n+1]; 
             
             int resultOf = dpClass.MinCostClimbingStairs(dpList);
@@ -31,7 +39,9 @@ namespace DynamicProgramming{
         [DataRow(12, 233)]
         public void ClimbStairsTest(int data, int expected){
             AlgoMonsterDaily.DynamicProgrammingClass dpClass = new AlgoMonsterDaily.DynamicProgrammingClass();
+            
             int resultOf = dpClass.ClimbingStairs(data);
+            
             Assert.AreEqual(resultOf, expected);
         }
     }
