@@ -6,6 +6,19 @@ using System.Threading.Tasks;
 
 namespace AlgoMonsterDaily {
 		public class DynamicProgrammingClass {
+				public int HouseRobber(List<int> nums){
+						int rob1= 0;
+						int rob2= 0;
+
+						foreach (var num in nums){
+								var temp = Math.Max(num + rob1, rob2);
+								rob1 = rob2;
+								rob2 = temp;
+						}
+
+						return rob2;
+				}
+
 				public int MinCostClimbingStairs(int[] cost){
 						int n = cost.Length;
 						int[] dp = new int[n+1];
