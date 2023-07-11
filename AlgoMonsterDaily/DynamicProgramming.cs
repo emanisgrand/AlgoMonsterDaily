@@ -6,17 +6,51 @@ using System.Threading.Tasks;
 
 namespace AlgoMonsterDaily {
 		public class DynamicProgrammingClass {
-				public int HouseRobber(List<int> nums){
-						int rob1= 0;
-						int rob2= 0;
+				public enum Optimization{ None, Runtime, Memory}
+				
+				public int HouseRobber(List<int> nums, Optimization optmz = Optimization.None){
+						int n = nums.Count;
 
-						foreach (var num in nums){
-								var temp = Math.Max(num + rob1, rob2);
-								rob1 = rob2;
-								rob2 = temp;
+						switch (optmz){
+							case Optimization.None:
+								break;
+								
+							case Optimization.Runtime:
+								if (n == 0) return 0;
+								if (n == 1) return nums[0];
+
+								List<int> dp = new List<int>(n);
+
+								dp[0] = nums[0];
+								dp[1] = Math.Max(nums[0], nums[1]);
+
+								for (int i = 2; i <= n; i++) {
+										dp[i] = Math.Max(dp[i - 1], dp[i - 2] + nums[i]);
+								}
+
+								return dp[n - 1];		
+							
+							case Optimization.Memory:				
+								if (n>1){
+										var max0 = nums[0];
+										var max1 = Math.Max(max0, nums[1]);
+
+										for (var i=2; i<n; i++){
+												var temp = Math.Max(max1, max0+nums[i]);
+												max0 = max1;
+												max1 = temp;
+										}
+										return max1;
+								}else if (n==1){
+										return nums[0];
+								} else {
+										return 0;
+								}				
+								
+								default:
+								break;
 						}
-
-						return rob2;
+						return 0;
 				}
 
 				public int MinCostClimbingStairs(int[] cost){
