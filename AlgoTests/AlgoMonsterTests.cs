@@ -12,15 +12,16 @@ namespace DynamicProgramming{
         [TestMethod]
         [DataRow("1 2 3 1", 4)]
 				[DataRow("7 4 9 5 6 2 1", 23)]
+        [DataRow("1", 1)]
 				public void HouseRobberTest(string data, int expected){
 						
             AlgoMonsterDaily.DynamicProgrammingClass dpClass = new AlgoMonsterDaily.DynamicProgrammingClass();
 
-            List<int> nums= TestHelper.SplitWords(data).Select(int.Parse).ToList();
+            List<int> nums= data.Split(' ').Select(int.Parse).ToList();
             
-						int resultOf = dpClass.AdvRobber(nums);
+						int actual = dpClass.AdvRobber(nums);
 
-						Assert.AreEqual(resultOf, expected);
+						Assert.AreEqual(expected, actual);
 				}
 
         [TestMethod]
@@ -56,7 +57,7 @@ namespace BinarySearch
         [DataRow("1 4 5 8 12 18 25 59 64", 18, 5)]
         public void VanillaBinarySearchTest(string data, int target, int expected)
         {
-            List<int> arr = TestHelper.SplitWords(data).Select(int.Parse).ToList();
+            List<int> arr = data.Split(' ').Select(int.Parse).ToList();
             Assert.AreEqual(expected, AlgoMonster.BinarySearch.Vanilla(arr, target));
         }
 
@@ -65,7 +66,7 @@ namespace BinarySearch
         [DataRow("false false false false false true true", 5)]
         public void FindFirstTrueElement(string data, int expected)
         {
-            List<bool> arr = TestHelper.SplitWords(data).Select(bool.Parse).ToList();
+            List<bool> arr = data.Split(' ').Select(bool.Parse).ToList();
             Assert.AreEqual(expected, AlgoMonster.BinarySearch.FirstBoundary(arr));
         }
 
@@ -75,7 +76,7 @@ namespace BinarySearch
         [DataRow("3 3 3 3 3 3", 3, 0)]
         public void FirstNotSmaller(string data, int target, int expected)
         {
-            List<int> arr = TestHelper.SplitWords(data).Select(int.Parse).ToList();
+            List<int> arr = data.Split(' ').Select(int.Parse).ToList();
             Assert.AreEqual(expected, AlgoMonster.BinarySearch.FirstNotSmaller(arr, target));
         }
 
@@ -84,7 +85,7 @@ namespace BinarySearch
         [DataRow("4 6 7 7 7 20", 5, -1)]
         public void FirstOcurrenceInAnArrayWithDuplicates(string data, int target, int expected)
         {
-            List<int> arr = TestHelper.SplitWords(data).Select(int.Parse).ToList();
+            List<int> arr = data.Split(' ').Select(int.Parse).ToList();
             Assert.AreEqual(expected, AlgoMonster.BinarySearch.FirstOcurrence(arr, target));
         }
 
@@ -166,7 +167,7 @@ namespace CompanyOAs
         [DataRow("1 3 5 8 9", "4 7 9 12 15", "1 3 4 5 7 8 9 9 12 15")]
         public void MergeSortTest(string l1, string l2, string expected)
         {
-            var arrA = TestHelper.SplitWords(l1);
+            var arrA = l1.Split().ToList();
             var arrB = TestHelper.SplitWords(l2);
 
             ListNode listA = TestHelper.BuildList(arrA, int.Parse);

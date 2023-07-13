@@ -5,13 +5,20 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace AlgoMonsterDaily {
-		public enum Optimization { Runtime, Memory }
+		public enum Optimization { Runtime =0, Memory =1}
 
 		public class DynamicProgrammingClass {
 				public int AdvRobber(List<int> nums){
+						int n = nums.Count;
+						if (n== 0){ 
+								return 0;
+						} else if (n==1) { 
+								return nums[0];
+						}
+						
 						return Math.Max(nums[0], Math.Max(
-								HouseRobber(nums), 
-								HouseRobber(nums)
+								HouseRobber(nums, 0, n-1), 
+								HouseRobber(nums, 0, n)		
 						));
 				}
 
